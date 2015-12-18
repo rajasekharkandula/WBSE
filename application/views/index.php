@@ -18,15 +18,15 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,7 +45,6 @@
 <div id="main">
 
 	<?php echo $header; ?>
-	
 	
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
@@ -103,7 +102,7 @@
                         <div class="panel panel-tile">
                             <div class="panel-body">
                                 <div class="row pv10">
-                                    <div class="col-xs-5 ph10"><img src="assets/img/pages/clipart0.png" class="img-responsive mauto" alt=""/></div>
+                                    <div class="col-xs-5 ph10"><img src="<?php echo base_url();?>/assets/img/pages/clipart0.png" class="img-responsive mauto" alt=""/></div>
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">TICKETS ANSWERED</h6>
                                         <h2 class="fs50 mt5 mbn">385</h2>
@@ -116,7 +115,7 @@
                         <div class="panel panel-tile">
                             <div class="panel-body">
                                 <div class="row pv10">
-                                    <div class="col-xs-5 ph10"><img src="assets/img/pages/clipart1.png" class="img-responsive mauto" alt=""/></div>
+                                    <div class="col-xs-5 ph10"><img src="<?php echo base_url();?>/assets/img/pages/clipart1.png" class="img-responsive mauto" alt=""/></div>
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">PROJECTS LAUNCHED</h6>
                                         <h2 class="fs50 mt5 mbn">197</h2>
@@ -129,7 +128,7 @@
                         <div class="panel panel-tile">
                             <div class="panel-body">
                                 <div class="row pv10">
-                                    <div class="col-xs-5 ph10"><img src="assets/img/pages/clipart2.png" class="img-responsive mauto" alt=""/></div>
+                                    <div class="col-xs-5 ph10"><img src="<?php echo base_url();?>/assets/img/pages/clipart2.png" class="img-responsive mauto" alt=""/></div>
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">HAPPY CUSTOMERS</h6>
                                         <h2 class="fs50 mt5 mbn">6789</h2>
@@ -142,7 +141,7 @@
                         <div class="panel panel-tile">
                             <div class="panel-body">
                                 <div class="row pv10">
-                                    <div class="col-xs-5 ph10"><img src="assets/img/pages/clipart3.png" class="img-responsive mauto" alt=""/></div>
+                                    <div class="col-xs-5 ph10"><img src="<?php echo base_url();?>/assets/img/pages/clipart3.png" class="img-responsive mauto" alt=""/></div>
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">UNIQUE INNOVATIONS</h6>
                                         <h2 class="fs50 mt5 mbn">256</h2>
@@ -168,17 +167,17 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="assets/js/jquery-2.1.4.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="assets/js/utility.js"></script>
-<script src="assets/js/demo.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
 
 <!-- Widget Javascript -->
-<script src="assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>
