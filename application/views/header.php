@@ -53,7 +53,7 @@
 	<div id="topbar-dropmenu">
 		<div class="topbar-menu row">
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-danger">
+				<a href="/WBSE/home/categories" class="metro-tile bg-danger">
 					<span class="fa fa-music"></span>
 					<span class="metro-title">Categories</span>
 				</a>

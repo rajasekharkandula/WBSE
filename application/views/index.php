@@ -18,15 +18,15 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -168,17 +168,17 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="assets/js/jquery-2.1.4.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
+<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
+<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="assets/js/utility.js"></script>
-<script src="assets/js/demo.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/WBSE/assets/js/utility.js"></script>
+<script src="/WBSE/assets/js/demo.js"></script>
+<script src="/WBSE/assets/js/main.js"></script>
 
 <!-- Widget Javascript -->
-<script src="assets/js/dashboard1.js"></script>
+<script src="/WBSE/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>
