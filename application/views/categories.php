@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -19,15 +18,16 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,7 +37,11 @@
 	<style>
 	.header-name{font-size: 35px !important; text-transform: uppercase;}
 	.ml-35{margin-left:35px !important;}
+
 	.bg-white{background-color:white;}
+
+	.pt-5{padding-top: 5px;}
+
 	</style>
 </head>
 
@@ -74,6 +78,7 @@
         <!-- End: Topbar -->
 
         <!-- Begin: Content -->
+
         <section id="content" class="animated fadeIn">
 			<div class="col-md-12">
 				<div class="col-md-5 bg-white">
@@ -104,6 +109,47 @@
 			</div>
 
 
+        <section id="content">
+				
+                <!-- dashboard tiles -->
+                <div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </button>
+					</div>	
+				</div>	
+				<br/>
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-center">SNO</th>
+									<th>Category Name</th>
+									<th>Category Description</th>
+									<th>Created Date</th>
+									<th>Modified Date</th>
+									<th>Status</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-center">1 </td>
+									<td>2 </td>
+									<td>3 </td>
+									<td>4 </td>
+									<td>5 </td>
+									<td>6 </td>
+									<td>7 </td>
+								</tr>
+							</tbody>
+						</table>
+				
+					</div>
+				</div>
+            <!-- end: .tray-center -->
+
+
         </section>
         <!-- End: Content -->
 
@@ -116,17 +162,19 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
+
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
 
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
+
 <!-- END: PAGE SCRIPTS -->
 
 </body>

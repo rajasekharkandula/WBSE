@@ -9805,7 +9805,7 @@ pre code {
   Tables
 ================================================= */
 table {
-  background-color: transparent;
+  background-color: #fff;
 }
 th {
   text-align: left;
@@ -9825,18 +9825,19 @@ th {
   padding: 9px;
   line-height: 1.49;
   vertical-align: middle;
-  border-top: 1px solid #e5eaee;
+  border: 1px solid #e5eaee;
 }
 .table > thead > tr > th {
-  border-bottom: 1px solid #e5eaee;
+  border: 1px solid #e5eaee;
   font-size: 12px;
   font-weight: 700;
   vertical-align: bottom;
   text-transform: uppercase;
+  color:#3D404C;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
-.table > thead:first-child > tr:first-child > th,
+/* .table > thead:first-child > tr:first-child > th, */
 .table > caption + thead > tr:first-child > td,
 .table > colgroup + thead > tr:first-child > td,
 .table > thead:first-child > tr:first-child > td {
@@ -26232,7 +26233,7 @@ body.timeline-page .panel-clone {
 }
 @media (min-width: 1100px) {
   #content {
-    padding: 40px 30px 50px 31px;
+    padding: 30px 30px 50px 31px;
   }
 }
 /* Adds top padding to md columns as a spacer
