@@ -12,10 +12,20 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('header','',true);
 		$this->load->view('categories',$data);
 	}
+	public function category_create()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('category_create',$data);
+	}
 	public function tasks()
 	{
 		$data['header'] = $this->load->view('header','',true);
 		$this->load->view('tasks',$data);
+	}
+	public function task_create()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('task_create',$data);
 	}
 	public function budget()
 	{

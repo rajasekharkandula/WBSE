@@ -481,12 +481,18 @@ var Core = function(options) {
 
       // Toggle menu and active class on icon click
       $('.topbar-menu-toggle').on('click', function() {
-
+		var mhref = $(this).attr('href');
+		 //$('.topbar-menu-toggle').removeClass('topbar-menu-open');
          // If dropmenu is using alternate style we don't show modal
        /*  if (menu.hasClass('alt')) {*/
             // Toggle menu and active class on icon click
-            menu.slideToggle(230).toggleClass('topbar-menu-open');
-            metroBG.fadeIn();
+			$('.topbar-dropmenu').each(function(){
+				var obj = $(this);
+				if(obj.hasClass('topbar-menu-open') && ('#'+obj.attr('id')) != mhref)
+					obj.slideToggle(230).toggleClass('topbar-menu-open');
+			});
+			$(mhref).slideToggle(230).toggleClass('topbar-menu-open');
+            //metroBG.fadeIn();
      /*    }
          else {
             menu.slideToggle(230).toggleClass('topbar-menu-open');

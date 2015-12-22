@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 07:58:26 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -20,7 +17,6 @@
     <!-- Icomoon CSS(font) -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
-  
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
@@ -28,25 +24,21 @@
      <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<style>
-	
+		
 	</style>
 </head>
 
 <body class="dashboard-page">
 
-<!-- Start: Main -->
-<div id="main">
-
 	<?php echo $header; ?>
 	
-	 <!-- Start: Content-Wrapper -->
+    <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
 	
         <!-- Start: Topbar -->
@@ -59,62 +51,50 @@
                         </a>
                     </li>
                     <li class="crumb-active">
-                       <a href="<?php echo base_url('home/categories');?>">Categories</a>
+                        <a href="<?php echo base_url('home/categories');?>">Categories</a>
                     </li>
                     <li class="crumb-link">
                         <a href="<?php echo base_url();?>">Home</a>
                     </li>
-                    <li class="crumb-trail">Categories</li>
+                    <li class="crumb-link">  
+						<a href="<?php echo base_url('home/categories');?>">Categories</a>
+					</li>
+					<li class="crumb-trail">  Category Creation</li>
                 </ol>
             </div>
         </header>
         <!-- End: Topbar -->
-	</section>
+		
+    </section>
     <!-- End: Content-Wrapper -->
 	
-	<section id="content">
-			
-		<!-- dashboard tiles -->
+	<!-- Begin: Content -->
+	<section class="c-padding">
 		<div class="row">
-			<div class="col-md-12">
-				<a href="<?php echo base_url('home/category_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
-			</div>	
-		</div>	
-		<br/>
-		<div class="row">
-			<div class="col-md-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="text-center">SNO</th>
-							<th>Category Name</th>
-							<th>Category Description</th>
-							<th>Created Date</th>
-							<th>Modified Date</th>
-							<th>Status</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="text-center">1 </td>
-							<td>2 </td>
-							<td>3 </td>
-							<td>4 </td>
-							<td>5 </td>
-							<td>6 </td>
-							<td>7 </td>
-						</tr>
-					</tbody>
-				</table>
-		
+			<div class="col-md-5 bg-white">
+				<h2 class="c-heading">Category Creation</h2>
+				<form method="post">
+					<div class="form-group">
+						<label for="cname">Category Name:</label>
+						<input type="text" class="form-control" id="cname" placeholder="Catergory Name" name="cname" size="30">
+					</div>
+					<div class="form-group">
+					  <label for="cdesc">Category Description:</label>
+					  <textarea class="form-control" rows="5" id="cdesc" placeholder="Category Description"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="cstatus">Category Status:</label>
+						<input type="text" class="form-control" id="cstatus" placeholder="Category Status" name="cstatus">
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-primary">Submit</button>
+						<button type="button" class="btn btn-default">Cancel</button>
+					</div>
+				</form>
 			</div>
 		</div>
-		<!-- end: .tray-center -->
-
 	</section>
 	<!-- End: Content -->
-
 </div>
 <!-- End: Main -->
 

@@ -17907,7 +17907,7 @@ table.tc-va-b-last tbody td:last-child {
 ==================================================== */
 html {
   height: 100%;
-  background: #fff;
+  /* background: #fff; */
 }
 body {
   width: 100%;
@@ -18258,6 +18258,7 @@ body.sidebar-collapsed #sidebar:before {
   top: -1px;
   font-size: 14px;
   vertical-align: middle;
+  margin-right: 3px;
 }
 .navbar .navbar-btn.btn-group > .btn {
   color: #888;
@@ -18303,19 +18304,20 @@ body.sidebar-collapsed #sidebar:before {
 /* Modify buttons inside contextuals navbars (bg-primary, etc) */
 .navbar .navbar-btn.btn-group > .btn {
   color: #b3b3b3;
-  background-color: #ffffff;
+  background-color: transparent;
   border: 0;
   border-radius: 5px;
-  border-bottom: 3px solid #e6e6e6;
+ /*  border-bottom: 3px solid #e6e6e6; */
   font-size: 12px;
   height: 38px;
   line-height: 38px;
-  padding: 0;
-  width: 42px;
+  padding: 0px 8px;
+  /* width: 42px; */
   z-index: 5;
 }
 .navbar .navbar-btn.btn-group > .btn:hover {
-  color: #8c8c8c;
+  color: #b3b3b3;
+  background-color: #fff;
 }
 .navbar .navbar-btn.btn-group.open > .btn,
 .navbar .navbar-btn.btn-group > .btn.active {
@@ -20087,7 +20089,7 @@ body.sb-top .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper {
 body.sb-top #toggle_sidemenu_r {
   display: none !important;
 }
-body.sb-top #topbar-dropmenu {
+body.sb-top .topbar-dropmenu {
   top: 0;
 }
 body.sb-top #topbar.affix {
@@ -21319,7 +21321,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 /*===============================================
    C. Topbar Dropmenu
 ================================================= */
-#topbar-dropmenu {
+.topbar-dropmenu {
   z-index: 999;
   overflow: hidden;
   display: none;
@@ -21333,7 +21335,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
   margin-bottom: -66px;
 
 }
-.navbar[class*='bg-'] + #sidebar_left + #content_wrapper > #topbar-dropmenu {
+.navbar[class*='bg-'] + #sidebar_left + #content_wrapper > .topbar-dropmenu {
   top: 6px;
 }
 .topbar-menu .metro-tile {
@@ -21380,39 +21382,39 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 }
 /* if topbar is fixed we force it relative upon topbar
  * dropmenu open as it will create scrolling problems */
-#topbar-dropmenu.topbar-menu-open + #topbar.affix {
+.topbar-dropmenu.topbar-menu-open + #topbar.affix {
   position: relative !important;
   margin-left: auto !important;
 }
 /*===============================================
    D. Topbar Dropdown Menu - Alternate Style
-      Requires ".alt" class on #topbar-dropmenu
+      Requires ".alt" class on .topbar-dropmenu
       and bg classes on all ".metro-tiles"
 ================================================= */
-#topbar-dropmenu.alt {
+.topbar-dropmenu.alt {
   z-index: 1025;
   padding: 17px 20px 10px;
   background: #DDD;
   border-bottom: 1px solid #ccc;
   box-shadow: none;
 }
-#topbar-dropmenu.alt:before {
+.topbar-dropmenu.alt:before {
   display: none;
 }
-#topbar-dropmenu.alt .topbar-menu > div {
+.topbar-dropmenu.alt .topbar-menu > div {
   opacity: 0.85;
 }
-#topbar-dropmenu.alt .topbar-menu .metro-tile {
+.topbar-dropmenu.alt .topbar-menu .metro-tile {
   opacity: 1;
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
-#topbar-dropmenu.alt .topbar-menu .metro-tile:hover,
-#topbar-dropmenu.alt .topbar-menu .metro-tile:focus,
-#topbar-dropmenu.alt .topbar-menu .metro-tile:active {
+.topbar-dropmenu.alt .topbar-menu .metro-tile:hover,
+.topbar-dropmenu.alt .topbar-menu .metro-tile:focus,
+.topbar-dropmenu.alt .topbar-menu .metro-tile:active {
   color: #fff;
   background: inherit;
 }
-#topbar-dropmenu.alt .topbar-menu .metro-tile .metro-title {
+.topbar-dropmenu.alt .topbar-menu .metro-tile .metro-title {
   bottom: 7px;
   font-size: 12px;
 }
@@ -25773,13 +25775,13 @@ blockquote.blockquote-dark {
   body.boxed-layout.sb-l-c.sb-r-o #topbar.affix {
     width: 840px !important;
   }
-  body.boxed-layout #topbar-dropmenu {
+  body.boxed-layout .topbar-dropmenu {
     top: 0;
   }
-  body.boxed-layout .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper > #topbar-dropmenu {
+  body.boxed-layout .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper > .topbar-dropmenu {
     top: 1px;
   }
-  body.boxed-layout.sb-top .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper > #topbar-dropmenu {
+  body.boxed-layout.sb-top .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper > .topbar-dropmenu {
     top: 0;
   }
 }
@@ -26163,6 +26165,18 @@ body.timeline-page .panel-clone {
     padding: 10px;
   }
 }
+
+/* ==============================================
+   Custom CSS
+================================================= */
+.header-name{font-size: 35px !important; text-transform: uppercase;}
+.ml-35{margin-left:35px !important;}
+.bg-white{background-color:white;}
+.c-heading{color: grey; margin-top: 10px; border-bottom: 1px solid #DDD; padding-bottom: 10px;} 
+.width-100 { width:100%; height:37px; }
+.c-padding{padding: 10px 55px 55px 55px;}
+
+
 /* ==============================================
     RESPONSIVE STYLES
       A. Content
@@ -26310,7 +26324,7 @@ body.timeline-page .panel-clone {
   #topbar.alt {
     padding: 15px 15px 10px 20px;
   }
-  #topbar-dropmenu {
+  .topbar-dropmenu {
     padding: 15px 20px 0;
   }
   .navbar-form.navbar-search {

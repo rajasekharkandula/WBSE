@@ -6,10 +6,17 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="hidden-xs">
+			<li class="">
                 <div class="navbar-btn btn-group">
-                    <a href="#" class="topbar-menu-toggle btn" data-toggle="button">
-                        <span class="fa fa-cog fs20 text-info"></span>
+                    <a href="#topbar-dropmenu1" class="topbar-menu-toggle btn" data-toggle="button">
+                        <span class="fa fa-cog fs20 text-info"></span> Settings
+                    </a>
+                </div>
+            </li>
+			<li class="">
+                <div class="navbar-btn btn-group">
+                    <a href="#topbar-dropmenu2" class="topbar-menu-toggle btn" data-toggle="button">
+                        <span class="fa fa-envelope fs20 text-info"></span> Messages
                     </a>
                 </div>
             </li>
@@ -50,7 +57,7 @@
     </header>
     <!-- End: Header -->
 	<!-- Start: Topbar-Dropdown -->
-	<div id="topbar-dropmenu">
+	<div class="topbar-dropmenu" id="topbar-dropmenu1">
 		<div class="topbar-menu row">
 			<div class="col-xs-4 col-sm-2">
 				<a href="<?php echo base_url('home/categories');?>" class="metro-tile bg-danger">
@@ -59,7 +66,7 @@
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-success">
+				<a href="<?php echo base_url('home/tasks');?>" class="metro-tile bg-success">
 					<span class="fa fa-picture-o"></span>
 					<span class="metro-title">Tasks</span>
 				</a>
@@ -76,6 +83,22 @@
 					<span class="metro-title">Messages</span>
 				</a>
 			</div>
+			<div class="col-xs-4 col-sm-2">
+				<a href="#" class="metro-tile bg-system">
+					<span class="fa fa-cog"></span>
+					<span class="metro-title">Settings</span>
+				</a>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<a href="#" class="metro-tile bg-dark">
+					<span class="fa fa-user"></span>
+					<span class="metro-title">Users</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="topbar-dropmenu" id="topbar-dropmenu2">
+		<div class="topbar-menu row">
 			<div class="col-xs-4 col-sm-2">
 				<a href="#" class="metro-tile bg-system">
 					<span class="fa fa-cog"></span>

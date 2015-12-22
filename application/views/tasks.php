@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -19,16 +18,16 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,14 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<style>
-	.header-name{font-size: 35px !important; text-transform: uppercase;}
-	.ml-35{margin-left:35px !important;}
-	.bg-white{background-color:white;}
-	.width-100
-	{
-		width:100%;
-		height:37px;
-	}
+	
 	</style>
 </head>
 
@@ -54,8 +46,7 @@
 
 	<?php echo $header; ?>
 	
-	
-    <!-- Start: Content-Wrapper -->
+	 <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
 	
         <!-- Start: Topbar -->
@@ -63,109 +54,82 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="crumb-icon">
-                        <a href="dashboard1.html">
+                        <a href="<?php echo base_url();?>">
                             <span class="fa fa-home"></span>
                         </a>
                     </li>
                     <li class="crumb-active">
-                        <a href="dashboard1.html">Tasks
+                       <a href="<?php echo base_url('home/tasks');?>">Tasks</a>
+                    </li>
                     <li class="crumb-link">
-                        <a href="index-2.html">Home</a>
+                        <a href="<?php echo base_url();?>">Home</a>
                     </li>
                     <li class="crumb-trail">Tasks</li>
                 </ol>
             </div>
         </header>
         <!-- End: Topbar -->
-
-        <!-- Begin: Content -->
-        <section id="content" class="animated fadeIn">
-			<div class="col-md-12">
-				<div class="col-md-5 bg-white">
-					<h1 style="color:grey">Task Creation</h1>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-5 bg-white">
-						<form method=post>
-							<br>
-							<div class="form-group"> 
-								<label for="selectcat">Select Catergory</label>
-								<select name="selectcat" id="selectcat" class="width-100">
-									<option value="cat1">Catergory-1</option>
-									<option value="cat2">Catergory-2</option>
-									<option value="cat3">Catergory-3</option>
-									<option value="cat4">Catergory-4</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="tname">Task Name:</label>
-								<input type="text" class="form-control" id="tname" placeholder="Task Name" name="tname">
-							</div>
-							<div class="form-group">
-								<label for="wbse">WBSE</label>
-								<input type="text" class="form-control" id="wbse" placeholder="WBSE Number" name="wbse">
-							</div>
-							<div class="form-group">
-							  <label for="tdesc">Task Description:</label>
-							  <textarea class="form-control" rows="5" id="tdesc" placeholder="Task Description" name="tdesc"></textarea>
-							</div>
-							<div class="form-group">
-								<label for="tbudget">Task Budget:</label>
-								<input type="text" class="form-control" id="tbudget" placeholder="Task Budget" name="tbudget">
-							</div>
-							<div class="form-group">
-								<label for="texpdate">Task Expiry Date:</label>
-								<div class="input-group date" id="datetimepicker1">
-									<input type="text" class="form-control" td="texpdate" name="texpdate">
-									<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="tstatus">Select Task Status:</label>
-								<select name="tstatus" id="tstatus" class="width-100">
-									<option value="active">Active</option>
-									<option value="inactive">Inactive</option>
-								</select>
-							</div>
-							<div class="form-group">
-							<button type="submit" class="btn btn-default">Submit</button>
-							</div>
-						</form>
-				</div>
-			</div>
-
-
-        </section>
-        <!-- End: Content -->
-
-     </section>
+	</section>
     <!-- End: Content-Wrapper -->
+	
+	<section id="content">
+			
+		<!-- dashboard tiles -->
+		<div class="row">
+			<div class="col-md-12">
+				<a href="<?php echo base_url('home/task_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
+			</div>	
+		</div>	
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="text-center">SNO</th>
+							<th>Task Name</th>
+							<th>Category Name</th>
+							<th>WBSE</th>
+							<th>Task Desc</th>
+							<th>Default Budget</th>
+							<th>Expiry Date</th>
+							<th>Status</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">1 </td>
+							<td>2 </td>
+							<td>3 </td>
+							<td>4 </td>
+							<td>5 </td>
+							<td>6 </td>
+							<td>7 </td>
+						</tr>
+					</tbody>
+				</table>
+		
+			</div>
+		</div>
+		<!-- end: .tray-center -->
+
+	</section>
+	<!-- End: Content -->
 
 </div>
 <!-- End: Main -->
 
 <!-- BEGIN: PAGE SCRIPTS -->
- <script type="text/javascript">
-    $(function () 
-	{
-        $('#datetimepicker1').datetimepicker();
-    });
-        </script>
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
-
-
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
-<script src="/WBSE/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>
