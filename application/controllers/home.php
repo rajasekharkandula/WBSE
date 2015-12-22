@@ -32,6 +32,26 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('header','',true);
 		$this->load->view('summaryreport',$data);
 	}
+	public function expenditure()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('expenditure',$data);
+	}
+	public function expenditureentry()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('expenditureentry',$data);
+	}
+	public function recoveryentry()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('recoveryentry',$data);
+	}
+	public function recoveryreport()
+	{
+		$data['header'] = $this->load->view('header','',true);
+		$this->load->view('recoveryreport',$data);
+	}
 }
 
 /* End of file Home.php */
