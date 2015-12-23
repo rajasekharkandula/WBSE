@@ -87,7 +87,7 @@
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-5 bg-white">
-						<form method=post>
+						<form method=post action="http://localhost:8081/WBSE/home/recoveryreport">
 							<br>
 							<div class="form-group">
 								<label for="cname">Company Name:</label>
@@ -109,16 +109,16 @@
 							<div class="form-group"> 
 								<label for="selectpay">Select Mode Of Payment</label>
 								<select name="selectpay" id="selectpay" class="width-100">
-									<option value="cat1">Cash</option>
-									<option value="cat2">Cheque</option>
-									<option value="cat3">Online</option>
+									<option value="Cash">Cash</option>
+									<option value="Cheque">Cheque</option>
+									<option value="Online">Online</option>
 								</select>
 							</div>
 							<div class="form-group"> 
 								<label for="reaslise">Realised</label>
 								<select name="realise" id="realise" class="width-100">
-									<option value="cat1">Yes</option>
-									<option value="cat2">No</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
 								</select>
 							</div>
 

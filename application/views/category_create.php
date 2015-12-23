@@ -30,7 +30,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<style>
-		
+	.width-100
+	{
+		width:100%;
+		height:37px;
+	}
 	</style>
 </head>
 
@@ -73,22 +77,25 @@
 		<div class="row">
 			<div class="col-md-5 bg-white">
 				<h2 class="c-heading">Category Creation</h2>
-				<form method="post">
+				<form method="post" action="http://localhost:8081/WBSE/home/category">
 					<div class="form-group">
 						<label for="cname">Category Name:</label>
-						<input type="text" class="form-control" id="cname" placeholder="Catergory Name" name="cname" size="30">
+						<input type="text" class="form-control" id="cname" placeholder="Catergory Name" name="cname" size="30" required>
 					</div>
 					<div class="form-group">
 					  <label for="cdesc">Category Description:</label>
-					  <textarea class="form-control" rows="5" id="cdesc" placeholder="Category Description"></textarea>
+					  <textarea class="form-control" rows="5" id="cdesc" placeholder="Category Description" name="cdesc" required></textarea>
+					</div>
+					<div class="form-group"> 
+						<label for="selectstatus">Select Catergory</label>
+						<select name="selectstatus" id="selectstatus" class="width-100" required>
+							<option value="Active">Active</option>
+							<option value="Inactive">Inactive</option>
+						</select>
 					</div>
 					<div class="form-group">
-						<label for="cstatus">Category Status:</label>
-						<input type="text" class="form-control" id="cstatus" placeholder="Category Status" name="cstatus">
-					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-primary">Submit</button>
-						<button type="button" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn btn-default">Cancel</button>
 					</div>
 				</form>
 			</div>

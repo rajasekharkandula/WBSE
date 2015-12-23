@@ -98,15 +98,20 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php if(isset($values)) : ?>
+						<?php foreach($values as $v) :?>
 						<tr>
-							<td class="text-center">1 </td>
-							<td>2 </td>
-							<td>3 </td>
-							<td>4 </td>
-							<td>5 </td>
-							<td>6 </td>
-							<td>7 </td>
+							<td><?php echo $v['taskID'];?></td>
+							<td><?php echo $v['taskName'];?></td>
+							<td><?php echo $v['categoryName'];?></td>
+							<td><?php echo $v['wbse'];?></td>
+							<td><?php echo $v['taskDesc'];?></td>
+							<td><?php echo $v['defBudget'];?></td>
+							<td><?php echo $v['expiryDate'];?></td>
+							<td><?php echo $v['status'];?></td>
 						</tr>
+						<?php endforeach;?>
+						<?php endif;?>
 					</tbody>
 				</table>
 		

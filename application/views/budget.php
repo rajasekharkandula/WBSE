@@ -92,19 +92,21 @@
 							<div class="form-group"> 
 								<label for="selectcat">Select Catergory</label>
 								<select name="selectcat" id="selectcat" class="width-100">
-									<option value="cat1">Catergory-1</option>
-									<option value="cat2">Catergory-2</option>
-									<option value="cat3">Catergory-3</option>
-									<option value="cat4">Catergory-4</option>
+									<?php if(isset($values)) : ?>
+									<?php foreach($values as $v) :?>
+										<option value="<?php echo $v['categoryName']?>"><?php echo $v['categoryName'];?></option>
+									<?php endforeach;?>
+									<?php endif;?>
 								</select>
 							</div>
 							<div class="form-group"> 
 								<label for="selecttask">Select Task</label>
 								<select name="selecttask" id="selecttask" class="width-100">
-									<option value="cat1">Task-1</option>
-									<option value="cat2">Task-2</option>
-									<option value="cat3">Task-3</option>
-									<option value="cat4">Task-4</option>
+									<?php if(isset($values)) : ?>
+									<?php foreach($values as $v) :?>
+										<option value="<?php echo $v['taskName']?>"><?php echo $v['taskName'];?></option>
+									<?php endforeach;?>
+									<?php endif;?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -146,10 +148,9 @@
 
 <!-- BEGIN: PAGE SCRIPTS -->
  <script type="text/javascript">
-    $(function () 
-	{
-        $('#datetimepicker1').datetimepicker();
-    });
+ $('#datetimepicker1').datepicker({
+   format: 'yyyy-mm-dd'
+   });
         </script>
 <!-- jQuery -->
 <script src="/WBSE/assets/js/jquery-2.1.4.js"></script>

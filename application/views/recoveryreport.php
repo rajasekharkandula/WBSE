@@ -116,166 +116,18 @@
 									<th>MODE OF PAYMENT</th>
 									<th>REALISED</th>
 								</tr>
+								<?php if(isset($values)) : ?>
+								<?php foreach($values as $v) :?>
 								<tr>
-									<td>1</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
+									<td><?php echo $v['recoveryID']?></td>	
+									<td><?php echo $v['companyName']?></td>
+									<td><?php echo $v['recoveryAmount']?></td>
+									<td><?php echo $v['recoveryDate']?></td>
+									<td><?php echo $v['modePayment']?></td>
+									<td><?php echo $v['realise']?></td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$3190.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>NO</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1980.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>NO</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>ONLINE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>ONLINE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-																<tr>
-									<td>11</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>ONLINE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>12</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$3190.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>NO</td>
-								</tr>
-								<tr>
-									<td>13</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1980.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>NO</td>
-								</tr>
-								<tr>
-									<td>14</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>15</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>ONLINE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>16</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>17</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>18</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CASH</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>19</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>CHEQUE</td>
-									<td>YES</td>
-								</tr>
-								<tr>
-									<td>20</td>
-									<td>ABC HEAD HUNTING</td>
-									<td>$1610.00</td>
-									<td>19/12/2015</td>
-									<td>ONLINE</td>
-									<td>YES</td>
-								</tr>
+								<?php endforeach;?>
+								<?php endif;?>
 							</table>
 						</div>
 			</div>

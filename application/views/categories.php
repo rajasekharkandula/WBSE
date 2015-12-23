@@ -96,15 +96,18 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php if(isset($values)) : ?>
+						<?php foreach($values as $v) :?>
 						<tr>
-							<td class="text-center">1 </td>
-							<td>2 </td>
-							<td>3 </td>
-							<td>4 </td>
-							<td>5 </td>
-							<td>6 </td>
-							<td>7 </td>
+							<td><?php echo $v['categoryID'];?></td>
+							<td><?php echo $v['categoryName'];?></td>
+							<td><?php echo $v['categoryDesc'];?></td>
+							<td><?php echo $v['createdDate'];?></td>
+							<td><?php echo $v['modifiedDate'];?></td>
+							<td><?php echo $v['status'];?></td>
 						</tr>
+						<?php endforeach;?>
+						<?php endif;?>
 					</tbody>
 				</table>
 		

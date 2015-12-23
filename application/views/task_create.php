@@ -26,7 +26,9 @@
     <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
 	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
-
+	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/bootstrap-datepicker.min.css">
+	
      <!-- Favicon -->
     <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
 
@@ -77,19 +79,22 @@
 		<div class="row">
 			<div class="col-md-5 bg-white">
 				<h2 class="c-heading">Task Creation</h2>
-				<form method="post">
+				<form method="post" action="http://localhost:8081/WBSE/home/task">
 					<div class="form-group"> 
 						<label for="selectcat">Select Catergory</label>
-						<select name="selectcat" id="selectcat" class="width-100">
-							<option value="cat1">Catergory-1</option>
-							<option value="cat2">Catergory-2</option>
-							<option value="cat3">Catergory-3</option>
-							<option value="cat4">Catergory-4</option>
+
+						<select name="selectcat" id="selectcat" class="width-100" required>
+						<?php if(isset($values)) : ?>
+						<?php foreach($values as $v) :?>
+							<option value="<?php echo $v['categoryName']?>"><?php echo $v['categoryName'];?></option>
+						<?php endforeach;?>
+						<?php endif;?>
 						</select>
+
 					</div>
 					<div class="form-group">
 						<label for="tname">Task Name:</label>
-						<input type="text" class="form-control" id="tname" placeholder="Task Name" name="tname">
+						<input type="text" class="form-control" id="tname" placeholder="Task Name" name="tname" required>
 					</div>
 					<div class="form-group">
 						<label for="wbse">WBSE</label>
@@ -97,31 +102,31 @@
 					</div>
 					<div class="form-group">
 					  <label for="tdesc">Description:</label>
-					  <textarea class="form-control" rows="5" id="tdesc" placeholder="Task Description" name="tdesc"></textarea>
+					  <textarea class="form-control" rows="5" id="tdesc" placeholder="Task Description" name="tdesc" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tbudget">Default Budget:</label>
-						<input type="text" class="form-control" id="tbudget" placeholder="Task Budget" name="tbudget">
+						<input type="text" class="form-control" id="tbudget" placeholder="Task Budget" name="tbudget" required>
 					</div>
 					<div class="form-group">
 						<label for="texpdate">Expiry Date:</label>
-						<div class="input-group date" id="datetimepicker1">
-							<input type="text" class="form-control" td="texpdate" name="texpdate">
+						<div class="input-group date datepicker"  id="datetimepicker1" >
+							<input type="text" class="form-control"  name="texpdate">
 							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
+								<i class="fa fa-calendar"></i>
 							</span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="tstatus">Status:</label>
-						<select name="tstatus" id="tstatus" class="width-100">
+						<select name="tstatus" id="tstatus" class="width-100" required>
 							<option value="active">Active</option>
 							<option value="inactive">Inactive</option>
 						</select>
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary">Submit</button>
-						<button type="button" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn btn-default">Cancel</button>
 					</div>
 				</form>
 			</div>
@@ -131,7 +136,10 @@
 
 <!-- BEGIN: PAGE SCRIPTS -->
 <!-- jQuery -->
+
 <script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 <!-- Theme Javascript -->
 <script src="<?php echo base_url();?>/assets/js/utility.js"></script>
@@ -140,6 +148,13 @@
 <!-- Widget Javascript -->
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
+<script>
+$(document).ready(function(){
+	$('#datetimepicker1').datepicker({
+   format: 'yyyy-mm-dd'
+   });
+});
+</script>
 </body>
 
 

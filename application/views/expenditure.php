@@ -109,6 +109,8 @@
 					<div class="border-solid">
 							<table class = "table">
 								<tr>
+									<th>SNO</th>
+									<th>CATEGORY NAME</th>
 									<th>TASK NAME</th>
 									<th>WBSE</th>
 									<th>COST</th>
@@ -117,78 +119,21 @@
 									<th>EMP NAME</th>
 									<th>REASON FOR EXPENDITURE</th>
 								</tr>
+								<?php if(isset($values)) : ?>
+								<?php foreach($values as $v) :?>
 								<tr>
-									<td>Develop Functiona Specifications</td>
-									<td>SAPDES0001</td>
-									<td>$10.00</td>
-									<td>12/28/2015</td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td><?php echo $v['expenditureID'];?></td>
+									<td><?php echo $v['categoryName'];?></td>
+									<td><?php echo $v['taskName'];?></td>
+									<td><?php echo $v['wbse'];?></td>
+									<td><?php echo $v['expenditureCost'];?></td>
+									<td><?php echo $v['expDate'];?></td>
+									<td><?php echo $v['employeeID'];?></td>
+									<td><?php echo $v['employeeName'];?></td>
+									<td><?php echo $v['reason'];?></td>
 								</tr>
-								<tr>
-									<td>Develop System Architecture</td>
-									<td>SAPDES0002</td>								
-									<td>$10.00</td>
-									<td>12/29/2015</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop Preliminary Design Specification</td>
-									<td>SAPDES0003</td>
-									<td>$10.00</td>
-									<td>12/30/2015</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop Detailed Design Specifications</td>
-									<td>SAPDES0004</td>
-									<td>$10.00</td>
-									<td>12/31/2015</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop Functiona Specifications</td>
-									<td>SAPDES0001</td>
-									<td>$10.00</td>
-									<td>01/01/2016</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop System Architecture</td>
-									<td>SAPDES0002</td>
-									<td>$10.00</td>
-									<td>01/01/2016</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop Preliminary Design Specification</td>
-									<td>SAPDES0003</td>
-									<td>$10.00</td>
-									<td>01/03/2016</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Develop Detailed Design Specifications</td>
-									<td>SAPDES0003</td>
-									<td>$10.00</td>
-									<td>01/04/2016</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								<?php endforeach;?>
+								<?php endif;?>
 							</table>
 						</div>
 			</div>

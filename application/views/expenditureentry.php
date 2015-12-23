@@ -87,25 +87,27 @@
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-5 bg-white">
-						<form method=post>
+						<form method=post action="http://localhost:8081/WBSE/home/expenditureentry">
 							<br>
 							<div class="form-group"> 
 								<label for="selectcat">Select Catergory</label>
 								<select name="selectcat" id="selectcat" class="width-100">
-									<option value="cat1">Catergory-1</option>
-									<option value="cat2">Catergory-2</option>
-									<option value="cat3">Catergory-3</option>
-									<option value="cat4">Catergory-4</option>
+						<?php if(isset($values)) : ?>
+						<?php foreach($values as $v) :?>
+							<option value="<?php echo $v['categoryName']?>"><?php echo $v['categoryName'];?></option>
+						<?php endforeach;?>
+						<?php endif;?>
 								</select>
 							</div>
 							<div class="form-group"> 
 								<label for="selecttask">Select Task:</label>
 								<select name="selecttask" id="selecttask" class="width-100">
-									<option value="task1">Task-1</option>
-									<option value="task2">Task-2</option>
-									<option value="task3">Task-3</option>
-									<option value="task4">Task-4</option>
-								</select>
+								<?php if(isset($values1)) : ?>
+								<?php foreach($values1 as $v) :?>
+									<option value="<?php echo $v['taskName']?>"><?php echo $v['taskName'];?>
+								<?php endforeach;?>
+								<?php endif;?>
+									</select>
 							</div>
 							<div class="form-group">
 								<label for="wbse">WBSE:</label>
