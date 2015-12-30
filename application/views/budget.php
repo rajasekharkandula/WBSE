@@ -19,16 +19,16 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,6 +43,30 @@
 	{
 		width:100%;
 		height:37px;
+	}
+	.border-solid
+	{
+		border-style:solid;
+		display: inline-block;
+		width: 100%;
+	}
+	th
+	{
+		font-size:medium !important;
+		color:black;
+		min-width:80px;
+	}
+	.fs-med
+	{
+		font-size:medium;
+	}
+	td
+	{
+		font-size:15px !important;
+	}
+	.bg-yellow
+	{
+		background-color:rgba(255,255,0,0.2) !important;
 	}
 	</style>
 </head>
@@ -80,62 +104,47 @@
 
         <!-- Begin: Content -->
         <section id="content" class="animated fadeIn">
-			<div class="col-md-12">
-				<div class="col-md-5 bg-white">
-					<h1 style="color:grey">Budget Creation</h1>
-				</div>
+			<div class = "panel panel-default">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="<?php echo base_url('home/budget_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
+				</div>	
+			</div>	
+						<?php foreach($categories as $c){ ?>
+						<br>
+						<div class="border-solid">
+							<table class = "table">
+								<tr>
+									<th>CATEGORY NAME</th>
+									<th>TASKS</th>
+									<th>WBS ELEMENT</th>
+	 								<th>Jan</th>
+									<th>Feb</th>
+									<th>Mar</th>
+									<th>Apr</th>
+									<th>May</th>
+									<th>June</th> 
+									<th>TOTAL PER TASK</th> 
+								</tr>
+								<?php foreach($tasks as $t){ if($c->categoryID == $t->categoryID){ ?>
+								<tr>
+									<td width="200px"><?php echo $c->categoryName; ?></td>
+									<td width="400px"><?php echo $t->taskName; ?></td>
+									<td><?php echo $t->wbse; ?></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+						<?php } } ?>
+							</table>
+						</div>
+						<?php } ?>
+				
 			</div>
-			<div class="col-md-12">
-				<div class="col-md-5 bg-white">
-						<form method=post>
-							<br>
-							<div class="form-group"> 
-								<label for="selectcat">Select Catergory</label>
-								<select name="selectcat" id="selectcat" class="width-100">
-									<?php if(isset($values)) : ?>
-									<?php foreach($values as $v) :?>
-										<option value="<?php echo $v['categoryName']?>"><?php echo $v['categoryName'];?></option>
-									<?php endforeach;?>
-									<?php endif;?>
-								</select>
-							</div>
-							<div class="form-group"> 
-								<label for="selecttask">Select Task</label>
-								<select name="selecttask" id="selecttask" class="width-100">
-									<?php if(isset($values)) : ?>
-									<?php foreach($values as $v) :?>
-										<option value="<?php echo $v['taskName']?>"><?php echo $v['taskName'];?></option>
-									<?php endforeach;?>
-									<?php endif;?>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="budget">Budget:</label>
-								<input type="text" class="form-control" id="budget" placeholder="Budget" name="budget">
-							</div>
-							<div class="form-group">
-								<label for="selectmonth">Month:</label>
-								<div class="input-group date" id="datetimepicker1">
-									<input type="text" class="form-control" td="selectmonth" name="selectmonth">
-									<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="status">Select Status:</label>
-								<select name="status" id="status" class="width-100">
-									<option value="active">Active</option>
-									<option value="inactive">Inactive</option>
-								</select>
-							</div>
-							<div class="form-group">
-							<button type="submit" class="btn btn-default">Submit</button>
-							</div>
-						</form>
-				</div>
-			</div>
-
 
         </section>
         <!-- End: Content -->
@@ -147,23 +156,19 @@
 <!-- End: Main -->
 
 <!-- BEGIN: PAGE SCRIPTS -->
- <script type="text/javascript">
- $('#datetimepicker1').datepicker({
-   format: 'yyyy-mm-dd'
-   });
-        </script>
+
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
-<script src="/WBSE/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/select2.js"></script>
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>

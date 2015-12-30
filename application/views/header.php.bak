@@ -60,7 +60,7 @@
 	<div class="topbar-dropmenu" id="topbar-dropmenu1">
 		<div class="topbar-menu row">
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/categories');?>" class="metro-tile bg-danger">
+				<a href="<?php echo base_url('home/category');?>" class="metro-tile bg-danger">
 					<span class="fa fa-music"></span>
 					<span class="metro-title">Categories</span>
 				</a>
@@ -72,27 +72,27 @@
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/budget');?>" class="metro-tile bg-primary">
+				<a href="#" class="metro-tile bg-primary">
 					<span class="fa fa-video-camera"></span>
 					<span class="metro-title">Budget Reports</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/expenditure');?>" class="metro-tile bg-alert">
+				<a href="#" class="metro-tile bg-alert">
 					<span class="fa fa-envelope"></span>
-					<span class="metro-title">Expenditure Reports</span>
+					<span class="metro-title">Messages</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/recovery');?>" class="metro-tile bg-system">
+				<a href="#" class="metro-tile bg-system">
 					<span class="fa fa-cog"></span>
-					<span class="metro-title">Recovery Reports</span>
+					<span class="metro-title">Settings</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/summaryreport');?>" class="metro-tile bg-dark">
+				<a href="#" class="metro-tile bg-dark">
 					<span class="fa fa-user"></span>
-					<span class="metro-title">Summary Reports</span>
+					<span class="metro-title">Users</span>
 				</a>
 			</div>
 		</div>

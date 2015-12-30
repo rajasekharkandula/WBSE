@@ -96,8 +96,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(isset($values)) : ?>
-						<?php foreach($values as $v) :?>
+						<?php if(isset($categories)) : ?>
+						<?php foreach($categories as $v) :?>
 						<tr>
 							<td><?php echo $v['categoryID'];?></td>
 							<td><?php echo $v['categoryName'];?></td>
@@ -105,6 +105,7 @@
 							<td><?php echo $v['createdDate'];?></td>
 							<td><?php echo $v['modifiedDate'];?></td>
 							<td><?php echo $v['status'];?></td>
+							<td><a href="<?php echo base_url();?>home/category_create/<?php echo $v['categoryID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
 						</tr>
 						<?php endforeach;?>
 						<?php endif;?>
@@ -132,7 +133,26 @@
 <!-- Widget Javascript -->
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
+<script>
+$(document).ready(function(){	
+/* $(".edit").on("click",function(){
+	var id=$(this).data("value");
+	alert(id);
+	$.ajax({
+   url: '<?php echo base_url();?>home/editfun',
+   type: 'POST',
+   data: {'id':id},
+   dataType: 'json'
+  }).done(function(data){
+   if(data){
+		window.location="<?php echo $base_url();?>/home/category_create/data.categoryID";
+   }
+  });
+});
+ */
+});
 
+</script>
 </body>
 
 

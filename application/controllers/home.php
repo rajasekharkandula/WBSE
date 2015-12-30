@@ -5,10 +5,11 @@ class Home extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('category');
-		$this->load->model('task');
-		$this->load->model('recovery');
-		$this->load->model('expenditure');
+		$this->load->model('category_model');
+		$this->load->model('task_model');
+		$this->load->model('recovery_model');
+		$this->load->model('expenditure_model');
+		$this->load->model('budget_model');
 	}
 
 	public function index()
@@ -19,59 +20,71 @@ class Home extends CI_Controller {
 	public function categories()
 	{
 		$data['header'] = $this->load->view('header','',true);
-		//$value=$this->category->insert_data();
-		$data['values']=$this->category->get_data();
+		$data['categories']=$this->category_model->getCategories();
 		$this->load->view('categories',$data);
 	}
-	public function category_create()
+	public function category_create($id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
+		$data['categories']=$this->category_model->getCategoriesById($id);
 		$this->load->view('category_create',$data);
 	}
-	public function category()
+	function create_category()
 	{
-		$data['header'] = $this->load->view('header','',true);
-		$value=$this->category->insert_data();
-		$data['values']=$this->category->get_data();
-		$this->load->view('categories',$data);
+		$this->category_model->createCategory();
+		redirect('home/categories');
 	}
 	public function home_cat(){
 		$data['header'] = $this->load->view('header','',true);
-		$data['values']=$this->category->get_data();
+		$data['categories']=$this->category_model->getCategories();
 		$this->load->view('categories',$data);
 	}
 	public function tasks()
 	{
 		$data['header'] = $this->load->view('header','',true);
-		//$value=$this->task->insert_data();
-		$data['values']=$this->task->get_data();
+		$data['tasks']=$this->task_model->getTasks();
+
 		$this->load->view('tasks',$data);
 	}
-	public function task_create()
+	public function task_create($id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$data['values']=$this->category->cat_name();
+		$data['categories']=$this->category_model->getCategories();
+		$data['task']=$this->task_model->getTasksByTaskId($id);
+		$data['tasks']=$this->task_model->getTasks();
+		//var_dump($data['values1']);exit();
 		$this->load->view('task_create',$data);
 	}
-	public function task()
+	public function create_task()
 	{
-		$data['header'] = $this->load->view('header','',true);
-		$value=$this->task->insert_data();
-		$data['values']=$this->task->get_data();
-		$this->load->view('tasks',$data);
+		$this->task_model->createTask();
+		redirect('home/tasks');
 	}
-	public function budget()
+	public function budget($id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$data['values']=$this->budget->cat_name();
-		$data['values']=$this->budget->task_name();
+		$data['categories']=$this->budget_model->getCategories();
+		$data['tasks']=$this->budget_model->getTasks();
+		$data['budgets']=$this->budget_model->getBudgets();
+		$data['budget']=$this->budget_model->getBudgetsById($id);
+		$data['budgetarray']=$this->budget_model->getBudgetAsArray();
+		//var_dump($data['budget']);exit();
 		$this->load->view('budget',$data);
+
 	}
-	public function budgetcost()
+	public function create_budget()
+	{
+		$this->budget_model->createBudget();
+		redirect('home/budget');
+	}
+	public function budget_create($id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$this->load->view('budgetcost',$data);
-	}
+		$data['categories']=$this->budget_model->getCategoriesAsArray();
+		$data['tasks']=$this->budget_model->getTasksAsArray();
+		$data['budget']=$this->budget_model->getBudgetsById($id);
+		$this->load->view('budget_create',$data);
+	}	
 	public function summaryreport()
 	{
 		$data['header'] = $this->load->view('header','',true);
@@ -80,44 +93,48 @@ class Home extends CI_Controller {
 	public function expenditure()
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$value=$this->expenditure->insert_data();
-		$data['values']=$this->expenditure->get_data();
+		$data['expgroup']=$this->expenditure_model->getExpenditures();
 		$this->load->view('expenditure',$data);
+
 	}
-	public function expenditureentry()
+	public function create_expenditure()
+	{
+		$groupID=$this->expenditure_model->createExpenditureList();
+		//var_dump($data['groupID']);exit();
+		redirect('home/expenditure_create/'.$groupID);
+	}
+	public function expenditure_create($groupID='',$id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
-		//$value=$this->expenditure->insert_data();
-		$data['values']=$this->expenditure->get_data();
-		$this->load->view('expenditure',$data);
+		$data['categories']=$this->category_model->getCategories();
+		$data['tasks']=$this->budget_model->getTasksAsArray();
+		$data['expenditures']=$this->expenditure_model->getExpenditureListById($id);
+		$data['expendituregroup']=$this->expenditure_model->getExpenditureListByGroupId($groupID);
+		$data['groupID'] = $groupID;
+		$this->load->view('expenditure_create',$data);
 	}
-	public function expenditure_create()
+	public function recovery()
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$data['values']=$this->expenditure->cat_name();
-		$data['values1']=$this->expenditure->task_name();
-		$this->load->view('expenditureentry',$data);
+		$data['recoveries']=$this->recovery_model->getRecoveries();
+		$this->load->view('recovery',$data);
+
 	}
-	public function recovery_create()
+	public function create_recovery()
+	{
+		$this->recovery_model->createRecovery();
+		redirect('home/recovery');
+	}
+	public function recovery_create($id='')
 	{
 		$data['header'] = $this->load->view('header','',true);
-		$this->load->view('recoveryentry',$data);
+		$data['recovery']=$this->recovery_model->getRecoveriesById($id);
+		$this->load->view('recovery_create',$data);
 	}
-	public function recoveryentry()
+	public function getTaskList()
 	{
-		$data['header'] = $this->load->view('header','',true);
-		$value=$this->recovery->insert_data();
-		$data['values']=$this->recovery->get_data();
-		$this->load->view('recoveryreport',$data);
-	}
-	public function recoveryreport()
-	{
-		$data['header'] = $this->load->view('header','',true);
-		//$value=$this->recovery->insert_data();
-		$data['values']=$this->recovery->get_data();
-		$this->load->view('recoveryreport',$data);
+		echo json_encode($this->task_model->getTasksByCategoryId($this->input->post("option")));
 	}
 }
-
 /* End of file Home.php */
 /* Location: ./application/controllers/home.php */
