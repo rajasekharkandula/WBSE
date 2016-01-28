@@ -5,7 +5,7 @@
                 <a href="<?php echo base_url();?>" class="header-name">WBSE </a>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" id="header-bar">
 			<li class="">
                 <div class="navbar-btn btn-group">
                     <a href="#topbar-dropmenu1" class="topbar-menu-toggle btn" data-toggle="button">
@@ -48,7 +48,7 @@
                             <span class="fa fa-cogs"></span> Settings </a>
                     </li>
                     <li class="dropdown-footer text-center">
-                        <a href="#" class="btn btn-primary btn-sm btn-bordered">
+                        <a href="/WBSE/home/logout" class="btn btn-primary btn-sm btn-bordered">
                             <span class="fa fa-power-off pr5"></span> Logout </a>
                     </li>
                 </ul>
