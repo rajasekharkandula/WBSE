@@ -72,27 +72,27 @@
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-primary">
+				<a href="<?php echo base_url('home/budget');?>" class="metro-tile bg-primary">
 					<span class="fa fa-video-camera"></span>
 					<span class="metro-title">Budget Reports</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-alert">
+				<a href="<?php echo base_url('home/expenditure');?>" class="metro-tile bg-alert">
 					<span class="fa fa-envelope"></span>
-					<span class="metro-title">Messages</span>
+					<span class="metro-title">Expenditure Reports</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-system">
+				<a href="<?php echo base_url('home/recovery');?>" class="metro-tile bg-system">
 					<span class="fa fa-cog"></span>
-					<span class="metro-title">Settings</span>
+					<span class="metro-title">Recovery Reports</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="#" class="metro-tile bg-dark">
+				<a href="<?php echo base_url('home/summaryreport');?>" class="metro-tile bg-dark">
 					<span class="fa fa-user"></span>
-					<span class="metro-title">Users</span>
+					<span class="metro-title">Summary Reports</span>
 				</a>
 			</div>
 		</div>

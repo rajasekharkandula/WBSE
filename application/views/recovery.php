@@ -19,16 +19,16 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -105,86 +105,36 @@
         <!-- Begin: Content -->
         <section id="content" class="animated fadeIn">
 			<div class = "panel panel-default">
-				<div class = "panel-heading"> <h1>Project Budgeted Cost</h1></div>
+					<div class="row">
+						<div class="col-md-12">
+							<a href="<?php echo base_url('home/recovery_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
+						</div>	
+					</div>	
+					<br>
 					<div class="border-solid">
 							<table class = "table">
 								<tr>
-									<th>PRODUCT TASKS</th>
-									<th>WBS ELEMENT</th>
-									<th>Jan</th>
-									<th>Feb</th>
-									<th>Mar</th>
-									<th>Apr</th>
-									<th>May</th>
-									<th>June</th>
-									<th>TOTAL PER TASK</th>
+									<th>SNO</th>
+									<th>HEAD/COMPANY NAME</th>
+									<th>AMOUNT</th>
+									<th>DATE</th>
+									<th>MODE OF PAYMENT</th>
+									<th>REALISED</th>
+									<th>Edit</th>
 								</tr>
+								<?php if(isset($recoveries)) : ?>
+								<?php foreach($recoveries as $v) :?>
 								<tr>
-									<td>Develop Functiona Specifications</td>
-									<td>SAPDES0001</td>
-									<td>10,000.0</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$10,005.00</td>
+									<td><?php echo $v['recoveryID']?></td>	
+									<td><?php echo $v['companyName']?></td>
+									<td><?php echo $v['recoveryAmount']?></td>
+									<td><?php echo $v['recoveryDate']?></td>
+									<td><?php echo $v['modePayment']?></td>
+									<td><?php echo $v['realise']?></td>
+									<td><a href="<?php echo base_url();?>home/recovery_create/<?php echo $v['recoveryID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
 								</tr>
-								<tr>
-									<td>Develop System Architecture</td>
-									<td>SAPDES0002</td>
-									<td>1.0</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$6.00</td>
-								</tr>
-								<tr>
-									<td>Develop Preliminary Design Specification</td>
-									<td>SAPDES0003</td>
-									<td>1.0</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$6.00</td>
-								</tr>
-								<tr>
-									<td>Develop Detailed Design Specifications</td>
-									<td>SAPDES0004</td>
-									<td>1.0</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$6.00</td>
-								</tr>
-								<tr>
-									<td>Develop Acceptance Test Plan</td>
-									<td>SAPDES0005</td>
-									<td>1.0</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$1.00</td>
-									<td>$6.00</td>
-								</tr>
-								<tr>
-									<th>Sub Total</th>
-									<th></th>
-									<th class="bg-yellow">10,004.0</th>
-									<th class="bg-yellow">$5.0</th>
-									<th class="bg-yellow">$5.0</th>
-									<th class="bg-yellow">$5.0</th>
-									<th class="bg-yellow">$5.0</th>
-									<th class="bg-yellow">$5.0</th>
-									<th class="bg-yellow">$10,029.00</th>
-								</tr>
+								<?php endforeach;?>
+								<?php endif;?>
 							</table>
 						</div>
 			</div>
@@ -201,17 +151,17 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
-<script src="/WBSE/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/select2.js"></script>
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>

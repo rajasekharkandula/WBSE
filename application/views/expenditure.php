@@ -19,16 +19,16 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,7 +43,7 @@
 	{
 		width:100%;
 		height:37px;
-	}
+	} 
 	.border-solid
 	{
 		border-style:solid;
@@ -56,13 +56,13 @@
 		color:black;
 		min-width:80px;
 	}
-	.fs-med
-	{
-		font-size:medium;
-	}
 	td
 	{
 		font-size:15px !important;
+	}
+	.fs-med
+	{
+		font-size:medium;
 	}
 	.bg-yellow
 	{
@@ -105,37 +105,34 @@
         <!-- Begin: Content -->
         <section id="content" class="animated fadeIn">
 			<div class = "panel panel-default">
-				<div class = "panel-heading"> <h1>Expenditures Over Time</h1></div>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="<?php echo base_url('home/expenditure_create/');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
+					</div>	
+				</div>	
+				<br>
 					<div class="border-solid">
 							<table class = "table">
 								<tr>
 									<th>SNO</th>
-									<th>CATEGORY NAME</th>
-									<th>TASK NAME</th>
-									<th>WBSE</th>
-									<th>COST</th>
 									<th>DATE</th>
-									<th>EMP ID</th>
-									<th>EMP NAME</th>
-									<th>REASON FOR EXPENDITURE</th>
+									<th>MANAGER NAME</th>
+									<th>STATUS</th>
+									<th>View</th>
 								</tr>
-								<?php if(isset($values)) : ?>
-								<?php foreach($values as $v) :?>
+								<?php if(isset($expgroup)) : ?>
+								<?php $i=1; foreach($expgroup as $v) :?>
 								<tr>
-									<td><?php echo $v['expenditureID'];?></td>
-									<td><?php echo $v['categoryName'];?></td>
-									<td><?php echo $v['taskName'];?></td>
-									<td><?php echo $v['wbse'];?></td>
-									<td><?php echo $v['expenditureCost'];?></td>
-									<td><?php echo $v['expDate'];?></td>
-									<td><?php echo $v['employeeID'];?></td>
-									<td><?php echo $v['employeeName'];?></td>
-									<td><?php echo $v['reason'];?></td>
+									<td><?php echo $i++ ; ?></td>
+									<td><?php echo $v['dateTime'];?></td>
+									<td></td>
+									<td><?php echo $v['status'];?></td>
+									<td><a href="<?php echo base_url();?>home/expenditure_create/<?php echo $v['groupID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
 								</tr>
 								<?php endforeach;?>
 								<?php endif;?>
 							</table>
-						</div>
+					</div>
 			</div>
 
         </section>
@@ -150,17 +147,17 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
-<script src="/WBSE/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/select2.js"></script>
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 
 </body>

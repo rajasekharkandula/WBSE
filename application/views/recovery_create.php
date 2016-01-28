@@ -19,16 +19,18 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-datepicker.min.css">
 
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -87,38 +89,41 @@
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-5 bg-white">
-						<form method=post action="http://localhost:8081/WBSE/home/recoveryreport">
+						<form method=post action="http://localhost:8081<?php echo base_url();?>/home/create_recovery">
 							<br>
 							<div class="form-group">
+							<input type="hidden" class="form-control" id="rid" name="rid" value="<?php if(isset($recovery[0]['recoveryID']))echo $recovery[0]['recoveryID'];?>">
+							</div>
+							<div class="form-group">
 								<label for="cname">Company Name:</label>
-								<input type="text" class="form-control" id="cname" placeholder="Company Name" name="cname">
+								<input type="text" class="form-control" id="cname" placeholder="Company Name" name="cname" value="<?php if(isset($recovery[0]['companyName']))echo $recovery[0]['companyName'];?>">
 							</div>
 							<div class="form-group">
 								<label for="amt">Amount:</label>
-								<input type="text" class="form-control" id="amt" placeholder="Amount" name="amt">
+								<input type="text" class="form-control" id="amt" placeholder="Amount" name="amt" value="<?php if(isset($recovery[0]['recoveryAmount']))echo $recovery[0]['recoveryAmount'];?>">
 							</div>
 							<div class="form-group">
 								<label for="date">Date:</label>
 								<div class="input-group date" id="datetimepicker1">
-									<input type="text" class="form-control" td="rdate" name="rdate">
+									<input type="text" class="form-control" td="rdate" name="rdate" value="<?php if(isset($recovery[0]['recoveryDate']))echo $recovery[0]['recoveryDate'];?>">
 									<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
+										<span class="fa fa-calendar"></span>
 									</span>
 								</div>
 							</div>
 							<div class="form-group"> 
 								<label for="selectpay">Select Mode Of Payment</label>
 								<select name="selectpay" id="selectpay" class="width-100">
-									<option value="Cash">Cash</option>
-									<option value="Cheque">Cheque</option>
-									<option value="Online">Online</option>
+								<option value="Cash" <?php if(isset($recovery[0]['modePayment']))if($recovery[0]['modePayment']=='No') echo 'selected';?>>Cash</option>
+								<option value="Cheque" <?php if(isset($recovery[0]['modePayment']))if($recovery[0]['modePayment']=='Yes') echo 'selected';?>>Cheque</option>
+									<option value="Online" <?php if(isset($recovery[0]['modePayment']))if($recovery[0]['modePayment']=='No') echo 'selected';?>>Online</option>
 								</select>
 							</div>
 							<div class="form-group"> 
 								<label for="reaslise">Realised</label>
 								<select name="realise" id="realise" class="width-100">
-									<option value="Yes">Yes</option>
-									<option value="No">No</option>
+									<option value="Yes" <?php if(isset($recovery[0]['realise']))if($recovery[0]['realise']=='Yes') echo 'selected';?>>Yes</option>
+									<option value="No" <?php if(isset($recovery[0]['realise']))if($recovery[0]['realise']=='No') echo 'selected';?>>No</option>
 								</select>
 							</div>
 
@@ -141,19 +146,27 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 
 <!-- jQuery -->
-<script src="/WBSE/assets/js/jquery-2.1.4.js"></script>
-<script src="/WBSE/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
 
 <!-- Theme Javascript -->
-<script src="/WBSE/assets/js/utility.js"></script>
-<script src="/WBSE/assets/js/demo.js"></script>
-<script src="/WBSE/assets/js/main.js"></script>
-<script src="/WBSE/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>/assets/js/select2.js"></script>
+<script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/bootstrap-datepicker.min.js"></script>
 <!-- Widget Javascript -->
-<script src="/WBSE/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
-
+<script>
+$(document).ready(function(){
+	$('#datetimepicker1').datepicker({
+   format: 'yyyy-mm-dd'
+   });
+});
+</script>
 </body>
 
 

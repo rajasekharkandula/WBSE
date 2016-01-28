@@ -86,7 +86,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="text-center">SNO</th>
+							<th class="text-center hide">SNO</th>
 							<th>Task Name</th>
 							<th>Category Name</th>
 							<th>WBSE</th>
@@ -98,10 +98,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(isset($values)) : ?>
-						<?php foreach($values as $v) :?>
+						<?php if(isset($tasks)) : ?>
+						<?php foreach($tasks as $v) :?>
 						<tr>
-							<td><?php echo $v['taskID'];?></td>
+							<td class="hide"><?php echo $v['taskID'];?></td>
 							<td><?php echo $v['taskName'];?></td>
 							<td><?php echo $v['categoryName'];?></td>
 							<td><?php echo $v['wbse'];?></td>
@@ -109,6 +109,7 @@
 							<td><?php echo $v['defBudget'];?></td>
 							<td><?php echo $v['expiryDate'];?></td>
 							<td><?php echo $v['status'];?></td>
+							<td><a href="<?php echo base_url();?>home/task_create/<?php echo $v['taskID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
 						</tr>
 						<?php endforeach;?>
 						<?php endif;?>
