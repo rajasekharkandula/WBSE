@@ -21,11 +21,13 @@
                 </div>
             </li>
             <li class="dropdown menu-merge">
-                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-                    <span class="hidden-xs"><name>Doug Adams</name> </span>
-                    <span class="fa fa-caret-down hidden-xs mr15"></span>
-                    <img src="<?php echo base_url();?>/assets/img/avatars/profile_avatar.jpg" alt="avatar" class="mw55">
-                </a>
+				<?php if($signin){?>
+					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+						<span class="hidden-xs"><name><?php echo $details->userName;?></name> </span>
+						<span class="fa fa-caret-down hidden-xs mr15"></span>
+						<img src="<?php echo base_url();?><?php echo $this->session->userdata('profilePic');?>" alt="avatar" class="mw55">
+					</a>
+				<?php }?>
                 <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
                    <li class="list-group-item">
                         <a href="#" class="animated animated-short fadeInUp">
@@ -111,6 +113,14 @@
 					<span class="metro-title">Users</span>
 				</a>
 			</div>
+			<?php if($signin){?>
+			<div class="col-xs-4 col-sm-2">
+				<a href="/WBSE/home/roles" class="metro-tile bg-roles">
+					<span class="fa fa-user"></span>
+					<span class="metro-title">Roles</span>
+				</a>
+			</div>
+			<?php }?>
 		</div>
 	</div>
 	<!-- End: Topbar-Dropdown -->

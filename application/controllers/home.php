@@ -6,12 +6,12 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->model('category');
+		//$this->load->model('category');
 		$this->load->model('task');
-		$this->load->model('recovery');
-		$this->load->model('expenditure');
+		//$this->load->model('recovery');
+		//$this->load->model('expenditure');
 		$this->load->model('home_model');
-
+		$this->load->library('session');
 		$this->load->model('category_model');
 		$this->load->model('task_model');
 		$this->load->model('recovery_model');
@@ -23,7 +23,12 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->load->library('session');
-		$data['header'] = $this->load->view('header','',true);
+		$data['signin'] = $this->session->userdata("userID");
+		
+		$data['details']=$this->task->getUserDetails();
+		//var_dump($data['details']);exit();
+		$data['header'] = $this->load->view('header',$data,true);
+		
 		if(!$this->session->userdata('login')){
 				redirect('home/login_form');
 			}
@@ -143,6 +148,26 @@ class Home extends CI_Controller {
 		$this->load->view('recovery',$data);
 
 	}
+	public function roles()
+	{
+		$data['signin'] = $this->session->userdata("userID");
+		$data['details']=$this->task->getUserDetails();
+		$data['roles']=$this->task->getRoles();
+		//var_dump($data['roles']);exit();
+		$data['header'] = $this->load->view('header',$data,true);
+		$this->load->view('roles',$data);
+
+	}
+	public function edit_roles($uRoleID='')
+	{
+		$data['signin'] = $this->session->userdata("userID");
+		$data['details']=$this->task->getUserDetails();
+		$data['roles']=$this->task->getRole($uRoleID);
+		//var_dump($data['roles']);exit();
+		$data['header'] = $this->load->view('header',$data,true);
+		$this->load->view('edit_roles',$data);
+
+	}
 	public function create_recovery()
 	{
 		$this->recovery_model->createRecovery();
@@ -158,9 +183,18 @@ class Home extends CI_Controller {
 	{
 		echo json_encode($this->task_model->getTasksByCategoryId($this->input->post("option")));
 	}
+	public function InsUpdRoles()
+	{
+		echo json_encode($this->task->InsUpdRoles());
+	}
+	public function deleteRoles()
+	{
+		echo json_encode($this->task->deleteRoles());
+	}
 	public function login_form()
 	{
-		$data['header'] = $this->load->view('header','',true);
+		$data['signin'] = $this->session->userdata("userID");
+		$data['header'] = $this->load->view('header',$data,true);
 		$this->load->library('session');
 		//exit();
 		if($this->session->userdata('login')){
@@ -169,7 +203,13 @@ class Home extends CI_Controller {
 		else
 		$this->load->view('login',$data);
 	}
+	public function getUserDetails(){
+		$data['details']=$this->task->login_form();
+		//var_dump($data['details']);exit();
+		$this->load->view('wbse',$data);
+	}
 	public function login_function(){
+		
 		$retval = $this->task->login_form($this->input->post('username'),$this->input->post('password'));
 		$ret_array['status'] = $retval;
 		
@@ -179,7 +219,7 @@ class Home extends CI_Controller {
 	public function registered($id='')
 	{
 		$data['details']=$this->home_model->get_details($id);
-		var_dump($data['details']);exit();
+		//var_dump($data['details']);exit();
 		$this->load->view("homepage",$data);
 	}
 	public function registration()

@@ -34,16 +34,50 @@ class Task extends CI_Model
 	}
 	function login_form($userName,$password)
 	{
-		$this->load->library('session');
 		$data=array();
+		$this->load->library('session');
 		$data=$this->db->query("CALL usp_loginFunction('".$userName."','".$password."')");
 		mysqli_next_result($this->db->conn_id);
-		if($data->row()){
+		if($data->num_rows()){
+				$row 	= $data->result_array();
+				$this->session->set_userdata('userID',$row[0]['userID']);
+				$this->session->set_userdata('profilePic',$row[0]['profilePic']);
 			$this->session->set_userdata("login",TRUE);
-			$this->session->set_userdata("userID",$data);
+			
 		return TRUE;}
 		else
 			return FALSE;
+		
+	}
+	public function getUserDetails(){
+		$this->load->library('session');
+		$userID=$this->session->userdata('userID');
+		//var_dump($userID);exit();
+		$data=$this->db->query("select userName,profilePic from tbl_users where userID='".$userID."'")->row();
+		mysqli_next_result($this->db->conn_id);
+		return $data;
+	}
+	public function getRoles(){
+		$data=$this->db->query("select * from tbl_userrole")->result();
+		return $data;
+	}
+	public function getRole($uRoleID){
+		$data=$this->db->query("select * from tbl_userrole where uRoleID='".$uRoleID."'")->result();
+		return $data;
+	}
+	public function deleteRoles(){
+		$roleID=$this->input->post('roleID');
+		$data=$this->db->query("update tbl_userrole set roleStatus='S' where uRoleID='".$roleID."'");
+		return $data;
+	}
+	public function InsUpdRoles(){
+		$roleTitle=$this->input->post('roleTitle');
+		$roleID=$this->input->post('roleID');
+		$roleDescription=$this->input->post('roleDescription');
+		$roleStatus=$this->input->post('roleStatus');
+		$data=$this->db->query("CALL usp_InsUpdRoles('".$roleID."','".$roleTitle."','".$roleDescription."','".$roleStatus."',@vresult, @vEtID)");
+		mysqli_next_result($this->db->conn_id);
+		return $data->result_array();
 	}
 }
 ?>
