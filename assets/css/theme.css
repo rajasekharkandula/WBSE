@@ -8463,7 +8463,7 @@ figure {
   margin: 0;
 }
 img {
-  vertical-align: top;
+  vertical-align: top !important;
 }
 .img-responsive,
 .thumbnail > img,
@@ -17539,7 +17539,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   max-width: 50px !important;
 }
 .mw55 {
-  max-width: 65px !important;
+  max-width: 55px !important;
 }
 .mw60 {
   max-width: 60px !important;
@@ -18107,7 +18107,7 @@ body.sidebar-collapsed #sidebar:before {
   line-height: 65px;
   padding-top: 0;
   padding-bottom: 0;
-  height: 65px;
+  height: 55px;
   max-height: 65px;
 }
 .navbar .nav > li > a.dropdown-toggle {

@@ -36,9 +36,8 @@
 <script src="<?php echo base_url();?>assets/js/jquery-2.1.4.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url();?>/assets/js/utility.js"></script>
-<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
 <script src="<?php echo base_url();?>/assets/js/main.js"></script>
-<script src="<?php echo base_url();?>assets/js/dashboard1.js"></script>
+
 <script src='<?php echo base_url();?>assets/js/moment.min.js'></script>
 <script src='<?php echo base_url();?>assets/js/jquery.min.js'></script>
 <script src='<?php echo base_url();?>assets/js/fullcalendar.min.js'></script>

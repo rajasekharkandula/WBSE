@@ -37,6 +37,7 @@ class Home extends CI_Controller {
 	public function calender(){
 		$this->load->library('session');
 		$data['signin'] = $this->session->userdata("userID");
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		//var_dump($this->session->userdata("userID"),$data['role']);exit();
 		$data['details']=$this->task->getUserDetails();
 		$data['header'] = $this->load->view('header',$data,true);
