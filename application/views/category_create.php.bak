@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 07:58:26 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -20,7 +17,6 @@
     <!-- Icomoon CSS(font) -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
-  
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
@@ -28,25 +24,25 @@
      <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<style>
-	
+	.width-100
+	{
+		width:100%;
+		height:37px;
+	}
 	</style>
 </head>
 
 <body class="dashboard-page">
 
-<!-- Start: Main -->
-<div id="main">
-
 	<?php echo $header; ?>
 	
-	 <!-- Start: Content-Wrapper -->
+    <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
 	
         <!-- Start: Topbar -->
@@ -59,66 +55,53 @@
                         </a>
                     </li>
                     <li class="crumb-active">
-                       <a href="<?php echo base_url('home/categories');?>">Categories</a>
+                        <a href="<?php echo base_url('home/categories');?>">Categories</a>
                     </li>
                     <li class="crumb-link">
                         <a href="<?php echo base_url();?>">Home</a>
                     </li>
-                    <li class="crumb-trail">Categories</li>
+                    <li class="crumb-link">  
+						<a href="<?php echo base_url('home/categories');?>">Categories</a>
+					</li>
+					<li class="crumb-trail">  Category Creation</li>
                 </ol>
             </div>
         </header>
         <!-- End: Topbar -->
-	</section>
+		
+    </section>
     <!-- End: Content-Wrapper -->
 	
-	<section id="content">
-			
-		<!-- dashboard tiles -->
+	<!-- Begin: Content -->
+	<section class="c-padding">
 		<div class="row">
-			<div class="col-md-12">
-				<a href="<?php echo base_url('home/category_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
-			</div>	
-		</div>	
-		<br/>
-		<div class="row">
-			<div class="col-md-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="text-center">SNO</th>
-							<th>Category Name</th>
-							<th>Category Description</th>
-							<th>Created Date</th>
-							<th>Modified Date</th>
-							<th>Status</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php if(isset($categories)) : ?>
-						<?php foreach($categories as $v) :?>
-						<tr>
-							<td><?php echo $v['categoryID'];?></td>
-							<td><?php echo $v['categoryName'];?></td>
-							<td><?php echo $v['categoryDesc'];?></td>
-							<td><?php echo $v['createdDate'];?></td>
-							<td><?php echo $v['modifiedDate'];?></td>
-							<td><?php echo $v['status'];?></td>
-							<td><a href="<?php echo base_url();?>home/category_create/<?php echo $v['categoryID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
-						</tr>
-						<?php endforeach;?>
-						<?php endif;?>
-					</tbody>
-				</table>
-		
+			<div class="col-md-5 bg-white">
+				<h2 class="c-heading">Category Creation</h2>
+				<form method="post" action="http://localhost:8081/WBSE/home/categories/">
+					<div class="form-group">
+						<label for="cname">Category Name:</label>
+						<input type="text" class="form-control" id="cname" placeholder="Catergory Name" name="cname" size="30" required value="">
+					</div>
+					<div class="form-group">
+					  <label for="cdesc">Category Description:</label>
+					  <textarea class="form-control" rows="5" id="cdesc" placeholder="Category Description" name="cdesc" required></textarea>
+					</div>
+					<div class="form-group"> 
+						<label for="selectstatus">Select Catergory</label>
+						<select name="selectstatus" id="selectstatus" class="width-100" required>
+							<option value="Active">Active</option>
+							<option value="Inactive">Inactive</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn btn-default">Cancel</button>
+					</div>
+				</form>
 			</div>
 		</div>
-		<!-- end: .tray-center -->
-
 	</section>
 	<!-- End: Content -->
-
 </div>
 <!-- End: Main -->
 
@@ -126,8 +109,6 @@
 <!-- jQuery -->
 <script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
 <script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/bootstrap-datepicker.min.js"></script>
 <!-- Theme Javascript -->
 <script src="<?php echo base_url();?>/assets/js/utility.js"></script>
 <script src="<?php echo base_url();?>/assets/js/demo.js"></script>
@@ -135,26 +116,7 @@
 <!-- Widget Javascript -->
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
-<script>
-$(document).ready(function(){	
-/* $(".edit").on("click",function(){
-	var id=$(this).data("value");
-	alert(id);
-	$.ajax({
-   url: '<?php echo base_url();?>home/editfun',
-   type: 'POST',
-   data: {'id':id},
-   dataType: 'json'
-  }).done(function(data){
-   if(data){
-		window.location="<?php echo $base_url();?>/home/category_create/data.categoryID";
-   }
-  });
-});
- */
-});
 
-</script>
 </body>
 
 
