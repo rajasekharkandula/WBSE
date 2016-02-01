@@ -43,6 +43,9 @@ td .circle_icon{
  color:#fff;
 }
 .th-center{text-align:center;}
+.mt-80{margin-top:80px;}
+.mt-70{margin-top:70px;}
+.add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
 </style>
     
 </head>
@@ -52,8 +55,12 @@ td .circle_icon{
     <?php echo $header;?>
    </div>
   <div class="container">
-   
-   <h2 style="margin-top:70px;">List of Roles</h2>
+   <div class="row">
+		<div class="col-md-3 mt-80">
+			<div class="">ADD RULE</div>
+		</div>
+		<div><h2 class="mt-75">List of Roles</h2></div>
+   </div>
    <table class="text-center table" style="width:100%">
     <thead>
 	
