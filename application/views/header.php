@@ -23,7 +23,7 @@
             <li class="dropdown menu-merge">
 				<?php if($signin){?>
 					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-						<span class="hidden-xs"><name><?php echo $details->userName;?></name> </span>
+						<span class="hidden-xs name-pos"><name><?php echo $details->userName;?></name> </span>
 						<span class="fa fa-caret-down hidden-xs mr15"></span>
 						<img src="<?php echo base_url();?><?php echo $this->session->userdata('profilePic');?>" alt="avatar" class="mw55">
 					</a>

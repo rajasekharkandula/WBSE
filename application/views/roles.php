@@ -47,41 +47,42 @@ td .circle_icon{
 .mt-75{margin-top:75px;}
 .add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
 </style>
-    
 </head>
 <body>
- <section>
-  <div class="main">
-    <?php echo $header;?>
-   </div>
-  <div class="container">
-		<a href="/WBSE/home/edit_roles/"><div class="col-md-3 mt-80">
-			<div class="add-rule">ADD RULE</div>
-		</div></a>
+	<section>
+	  <div class="main">
+		<?php echo $header;?>
+	   </div>
+	  <div class="container">
+		<a href="/WBSE/home/edit_roles/">
+			<div class="col-md-3 mt-80">
+				<div class="add-rule">ADD RULE</div>
+			</div>
+		</a>
 		<div class="col-md-3"><h2 class="mt-75">List of Roles</h2></div>
-   <table class="text-center table" style="width:100%">
-    <thead>
-	
-     <tr>
-      <th class="th-center">Roles</th>
-      <th  class="th-center">Description</th>
-      <th  class="th-center">Status</th>
-      <th  class="th-center">Actions</th>
-     </tr>
-	
-    </thead>
-    <tbody>
-    <?php foreach($roles as $r):?>
-     <tr>
-      <td><?php echo $r->roleName;?></td>
-      <td><?php echo $r->roleDescription;?></td>
-      <td><?php  if($r->roleStatus=="P") echo 'Active';else echo 'In Active';?></td>
-      <td><a class="btn" href="/WBSE/home/edit_roles/<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button></td>
-     </tr>
-    <?php endforeach;?>
-    </tbody>
-   </table>
-  </div>
+	   <table class="text-center table" style="width:100%">
+			<thead>
+				 <tr>
+					  <th class="th-center">Roles</th>
+					  <th  class="th-center">Description</th>
+					  <th  class="th-center">Status</th>
+					  <th  class="th-center">Actions</th>
+				 </tr>
+			</thead>
+			<tbody>
+				<?php foreach($roles as $r):?>
+				 <tr>
+					  <td><?php echo $r->roleName;?></td>
+					  <td><?php echo $r->roleDescription;?></td>
+					  <td><?php  if($r->roleStatus=="P") echo 'Active';else echo 'In Active';?></td>
+					  <td>
+						<a class="btn" href="/WBSE/home/edit_roles/<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button>
+					  </td>
+				 </tr>
+				<?php endforeach;?>
+			</tbody>
+	   </table>
+	</div>
  </section>
 <script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
 <script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
