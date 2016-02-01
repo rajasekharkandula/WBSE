@@ -56,7 +56,7 @@ td .circle_icon{
 	  <div class="container">
 		<a href="/WBSE/home/edit_roles/">
 			<div class="col-md-3 mt-80">
-				<div class="add-rule">ADD RULE</div>
+				<div class="add-rule">ADD ROLE</div>
 			</div>
 		</a>
 		<div class="col-md-3"><h2 class="mt-75">List of Roles</h2></div>

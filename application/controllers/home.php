@@ -264,6 +264,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['roles']=$this->task->getRoles();
 		//var_dump($data['roles']);exit();
 		$data['header'] = $this->load->view('header',$data,true);
