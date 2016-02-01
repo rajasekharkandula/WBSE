@@ -44,7 +44,7 @@ td .circle_icon{
 }
 .th-center{text-align:center;}
 .mt-80{margin-top:80px;}
-.mt-70{margin-top:70px;}
+.mt-75{margin-top:75px;}
 .add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
 </style>
     
@@ -55,12 +55,10 @@ td .circle_icon{
     <?php echo $header;?>
    </div>
   <div class="container">
-   <div class="row">
-		<div class="col-md-3 mt-80">
-			<div class="">ADD RULE</div>
-		</div>
-		<div><h2 class="mt-75">List of Roles</h2></div>
-   </div>
+		<a href="/WBSE/home/edit_roles/"><div class="col-md-3 mt-80">
+			<div class="add-rule">ADD RULE</div>
+		</div></a>
+		<div class="col-md-3"><h2 class="mt-75">List of Roles</h2></div>
    <table class="text-center table" style="width:100%">
     <thead>
 	
