@@ -8463,7 +8463,7 @@ figure {
   margin: 0;
 }
 img {
-  vertical-align: middle;
+  vertical-align: top;
 }
 .img-responsive,
 .thumbnail > img,
@@ -17539,7 +17539,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   max-width: 50px !important;
 }
 .mw55 {
-  max-width: 55px !important;
+  max-width: 65px !important;
 }
 .mw60 {
   max-width: 60px !important;
@@ -18116,12 +18116,11 @@ body.sidebar-collapsed #sidebar:before {
 }
 .navbar .nav > li > a.dropdown-toggle > .fa {
   font-size: 12px;
-  position: relative;
-  top: -16px;
+  
   text-align: center;
   width: 34px;
 }
-.name-pos{ position: relative;top: -16px;}
+
 .navbar .nav > li > a.dropdown-toggle > .fa:before {
   content: '\f078';
 }
