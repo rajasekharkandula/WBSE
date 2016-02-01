@@ -70,14 +70,14 @@ class Task extends CI_Model
   $data=$this->db->query("update tbl_userrole set roleStatus='S' where uRoleID='".$roleID."'");
   return $data;
  }
- public function InsUpdRoles(){
-  $roleTitle=$this->input->post('roleTitle');
-  $roleID=$this->input->post('roleID');
-  $roleDescription=$this->input->post('roleDescription');
-  $roleStatus=$this->input->post('roleStatus');
-  $data=$this->db->query("CALL usp_InsUpdRoles('".$roleID."','".$roleTitle."','".$roleDescription."','".$roleStatus."',@vresult, @vEtID)");
-  mysqli_next_result($this->db->conn_id);
-  return $data->result_array();
- }
+	public function InsUpdRoles(){
+		$roleTitle=$this->input->post('roleTitle');
+		$roleID=$this->input->post('roleID');
+		$roleDescription=$this->input->post('roleDescription');
+		$roleStatus=$this->input->post('roleStatus');
+		$data=$this->db->query("CALL usp_InsUpdRoles('".$roleID."','".$roleTitle."','".$roleDescription."','".$roleStatus."',@vresult, @vEtID)");
+		mysqli_next_result($this->db->conn_id);
+		return $data->result_array();
+	}
 }
 ?>

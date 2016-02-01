@@ -131,6 +131,16 @@
 				</a>
 			</div>
 			<?php endif;?>
+			<?php if($signin){?>
+			<?php if(in_array('Administrator',$role)):?>
+			<div class="col-xs-4 col-sm-2">
+				<a href="/WBSE/home/roles" class="metro-tile bg-roles bg-dark">
+					<span class="fa fa-user"></span>
+					<span class="metro-title">Roles</span>
+				</a>
+			</div>
+			<?php endif;?>
+			<?php }?>
 		</div>
 	</div>
 	<!-- End: Topbar-Dropdown -->

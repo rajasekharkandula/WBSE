@@ -18117,10 +18117,11 @@ body.sidebar-collapsed #sidebar:before {
 .navbar .nav > li > a.dropdown-toggle > .fa {
   font-size: 12px;
   position: relative;
-  top: -2px;
+  top: -16px;
   text-align: center;
   width: 34px;
 }
+.name-pos{ position: relative;top: -16px;}
 .navbar .nav > li > a.dropdown-toggle > .fa:before {
   content: '\f078';
 }
@@ -22679,6 +22680,7 @@ a.bg-dark:hover {
   background-color: #fafafa;
   color: #666;
 }
+.bg-roles{background-color: #55C582 !important;}
 a.bg-light:hover {
   background-color: #cfd9e0 !important;
 }
