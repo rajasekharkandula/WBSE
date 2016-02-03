@@ -85,9 +85,20 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['user']=$this->home_model->get_details($id);
 		$data['roles']=$this->home_model->getRoles();
+		$data['ids']=$this->home_model->getAllIds();
 		$data['userRole']=$this->home_model->getUserRole($id);
-		//var_dump($data['user'],$data['userRole'],$data['roles']);exit();
+		$data['countries']=$this->home_model->getCountries();
+		//var_dump($data['ids']);exit();
+		$data['states']=$this->home_model->getStates();
+		$data['cities']=$this->home_model->getCities();
+		//var_dump($data['countries'],$data['states'],$data['cities'],$data['ids']);exit();
 		$this->load->view('edit_profile',$data);
+	}
+	public function getStateDetails(){
+		echo json_encode($this->home_model->getStateDetails());
+	}
+	public function getCityDetails(){
+		echo json_encode($this->home_model->getCityDetails());
 	}
 	public function delete_profile()
 	{

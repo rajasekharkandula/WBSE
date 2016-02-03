@@ -17711,6 +17711,7 @@ on tables, feel free to add more*/
 .mnw1000 {
   min-width: 1000px !important;
 }
+.mt-80{margin-top:80px;}
 /* ================================================
   A. Table Styling Helpers 
 =================================================== */
@@ -18084,6 +18085,7 @@ body.sidebar-collapsed #sidebar:before {
   box-shadow: none;
   /* Navbar shadow option - Only allowed on default white navbar */
 }
+.add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
 .navbar.navbar-shadow {
   -webkit-box-shadow: none;
   box-shadow: none;

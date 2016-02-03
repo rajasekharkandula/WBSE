@@ -107,17 +107,23 @@
 	public function edit_user_data(){
 		$result['status']='failed';
 		$userID=$this->input->post('userID');
-		$name=$this->input->post('name');
+		$firstName=$this->input->post('firstName');
+		$lastName=$this->input->post('lastName');
 		$userName=$this->input->post('username');
+		$password=$this->input->post('password');
 		$emailID=$this->input->post('email');
+		$address=$this->input->post('address');
+		$country=$this->input->post('country');
+		$state=$this->input->post('state');
+		$city=$this->input->post('city');
 		$status=$this->input->post('status');
 		//var_dump($status);exit();
-		$address=str_replace(' ', '&nbsp;',$this->input->post('address'));
+		//$address=str_replace(' ', '&nbsp;',$this->input->post('address'));
 		$role1=$this->input->post('role');
 		$role=implode(",",$role1);
 			$length=sizeof($role);
-		//var_dump($userID,$name,$userName,$emailID,$address,$role);exit();
-		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$name.'","'.$userName.'","'.$emailID.'","'.$address.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
+		//var_dump($userID,$userName,$emailID,$address,$role);exit();
+		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$firstName.'","'.$lastName.'","'.$userName.'","'.$password.'","'.$emailID.'","'.$address.'","'.$country.'","'.$state.'","'.$city.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
 		mysqli_next_result($this->db->conn_id);
 		$query1=$this->db->query("select @output")->result_array();
 		if($query1[0]['@output']=='Done Successfully')
@@ -126,6 +132,47 @@
 			return $result;
 		}
 		return $result;
+	}
+	public function getAllIds()
+	{
+		$userID=$this->session->userData('userID');
+		$query=$this->db->query("select country,city,state from tbl_users where userID='".$userID."';")->row();
+		return $query;
+	}
+	public function getCountryList()
+	{
+		$details=$this->input->post("CALL usp_getCountryStateCityDetails('C',null,null,null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getStateDetails()
+	{
+		$countryID=$this->input->post('countryID');
+		$details=$this->db->query("CALL usp_getCountryStateCityDetails('S','".$countryID."',null,null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getCityDetails()
+	{
+		$stateID=$this->input->post('stateID');
+		$details=$this->db->query("CALL usp_getCountryStateCityDetails('CI',null,'".$stateID."',null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getCountries()
+	{
+		$query=$this->db->query("select * from tbl_country")->result();
+		return $query;
+	}
+	public function getStates()
+	{
+		$query=$this->db->query("select * from tbl_state")->result();
+		return $query;
+	}
+	public function getCities()
+	{
+		$query=$this->db->query("select * from tbl_cities")->result();
+		return $query;
 	}
 }
       

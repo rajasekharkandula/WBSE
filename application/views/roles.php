@@ -43,9 +43,9 @@ td .circle_icon{
  color:#fff;
 }
 .th-center{text-align:center;}
-.mt-80{margin-top:80px;}
+
 .mt-75{margin-top:75px;}
-.add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
+
 </style>
 </head>
 <body>

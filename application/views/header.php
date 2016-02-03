@@ -25,7 +25,7 @@
 					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
 						<span class="hidden-xs"><name><?php echo $details->userName;?></name> </span>
 						<span class="fa fa-caret-down hidden-xs mr15"></span>
-						<img src="<?php echo base_url().'assets/'.$details->profilePic;?>" alt="avatar" class="mw55">
+						<img src="<?php if(file_exists($details->profilePic)) echo base_url().'assets/'.$details->profilePic; else echo base_url().'assets/img/pages/clipart2.png';?>" alt="avatar" class="mw55">
 					</a>
 				<?php }?>
                 <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
