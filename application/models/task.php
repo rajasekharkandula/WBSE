@@ -32,23 +32,7 @@ class Task extends CI_Model
 		$query=$this->db->query("Select categoryName from task")->result_array();
 		return $query;
 	}
-	function login_form($userName,$password)
-	{
-		$data=array();
-		$this->load->library('session');
-		$data=$this->db->query("CALL usp_loginFunction('".$userName."','".$password."')");
-		mysqli_next_result($this->db->conn_id);
-		if($data->num_rows()){
-				$row 	= $data->result_array();
-				$this->session->set_userdata('userID',$row[0]['userID']);
-				$this->session->set_userdata('profilePic',$row[0]['profilePic']);
-			$this->session->set_userdata("login",TRUE);
-			
-		return TRUE;}
-		else
-			return FALSE;
-		
-	}
+	
 	public function getUserDetails(){
 		$this->load->library('session');
 		$userID=$this->session->userdata('userID');

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,169 +84,135 @@
 <div id="main">
 
 	<?php echo $header; ?>
-		<div class="container">
-			<div class="row" id="pwd-container">
-				<div class="col-md-12 login-mt">
-					<div class="row-border">
-						<section class="row login-form" >
-							<div class="col-md-6 "style="left:30%;">
-								<div class="col-md-12 ">
-									<div class="pr-10 pl-10">
-									</div>
-								</div>
-								<div class="col-md-12 ">
-									<div class=" ">
-										<ul class="nav nav-tabs" id="login_page">
-											<li class="active" style="border-right:1px solid #ddd;"><a data-toggle="tab" href="#login" style="border:0px;"id="loginForm">Sign In</a></li>
-											<li class="inactive"><a style="border:0px; border-bottom:0px;" data-toggle="tab" href="#register"id="registerForm">Sign Up</a></li>
-										</ul>
-										<div class="tab-content">
-												<div class="fade"id="login">
-													<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="login" id="login_form">
-														<center><h2></h2><div class="text-danger pl-50" id="login_error"></div></center>
-														<div class="form-group">
-															<div class="input-group">
-																<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
-																<input type="text" class="form-control" id="username" name="username" placeholder="Email">
-															</div>
-															<div class="text-danger pl-50" id="username_error"></div>
-														</div>
-														<div class="form-group">
-															<div class="input-group">
-																<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
-																<input type="password" class="form-control entity-form" name="password" id="password" placeholder="Password"/>
-															</div>
-															<div class="text-danger pl-50" id="password_error"></div>
-														</div>
-														<div class="form-group">
-															<input type="submit" name="go" style="background-color:#32A7B3 !important;" class="btn btn-lg bg_dark_purple btn-launch" id="sign_in" value="Login">
-														</div>
-														<div class="form-group">
-															<a href="javascript:void(0);" id="show_forgot_password">Forgot Password ?</a> Click here to reset password
-														</div>
-												</form>
-												<div id="forget_password" class="hide">
-													<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="forgetPassword" id="forgetPassword_form">
-														<label class="success_txt hide" style="color:#169E0D;">Reset link has been sent to your email id</label>
-														<label class="not_exist hide" style="color:#FF0000;">This email id does not exist</label>
-														<div class="form-group">
-															<div class="input-group">
-																<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-envelope"></i></div>
-																<input type="text" class="form-control entity-form" name="email" id="email" placeholder="Email"/>
-															</div>
-															<div class="text-danger pl-50" id="email_error"></div>
-														</div>
-														<div class="form-group">
-															<input type="submit" name="email_send" style="background-color:#32A7B3 !important;" class="btn btn-lg bg_dark_purple btn-launch" id="send_email" value="Reset"><!-- Send Email</button>-->
-														</div>
-													</form>
-												</div>
+	<div class="container login-mt">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row-border">
+					<section class="row login-form" >
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<!--ul class="nav nav-tabs" id="login_page">
+								<li class="active" style="border-right:1px solid #ddd;"><a data-toggle="tab" href="#login" style="border:0px;"id="loginForm">Sign In</a></li>
+								<li class="inactive"><a style="border:0px; border-bottom:0px;" data-toggle="tab" href="#register"id="registerForm">Sign Up</a></li>
+							</ul-->
+							<h4 class="text-center">Login</h4>
+							<div class="tab-content">
+								<div class="fade"id="login">
+									<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="login" id="login_form">
+										<div class="form-group">
+											<div class="input-group">
+												<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
+												<input type="text" class="form-control" id="username" placeholder="Email"/>
 											</div>
-											<div class="tab-pane fade" id="register">
-				<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="SignUp" id="register_form">
-				<center><h2></h2><div class="text-danger pl-50" id="signup_error"></div></center>
-				<div class="form-group">
-					<input type="hidden" id="userID" value="">
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
-						<input type="text" class="form-control" id="reg-name" name="reg-name" placeholder="Name">
-					</div>
-					<div class="text-danger pl-50" id="reg-name_error"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
-						<input type="text" class="form-control" id="reg-username" name="reg-username" placeholder="UserName">
-					</div>
-					<div class="text-danger pl-50" id="reg-username_error"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-envelope"></i></div>
-						<input type="text" class="form-control" id="reg-email" name="reg-email" placeholder="Email-ID">
-					</div>
-					<div class="text-danger pl-50" id="reg-email_error"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
-						<input type="password" class="form-control entity-form" name="first_password" id="first_password" placeholder="Password">
-					</div>
-					<div class="text-danger pl-50" id="password_error1"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
-						<input type="password" class="form-control entity-form" name="confirm_password" id="confirm_password" placeholder="Re-Enter Password">
-					</div>
-					<div class="text-danger pl-50" id="password_error2"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group date" id="datetimepicker1" name="datetimepicker1">
-						<span class="input-group-addon">
-						<span class="glyphicon fnt-sz-12"><i class="fa fa-calendar"></i></span>
-						</span>
-						<input type="text" id="startDate" class="form-control" name="startDate" va_req="true" value="" placeholder="Date Of Birth">
-					</div>
-					<div class="text-danger pl-50" id="startdate_error"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-					<label>Gender</label>
-					<span class=" pl-50 pr-50"><input class="gender_type" type="radio" value="male" name="gender_type"> &nbsp;<i class="fa fa-male"></i> &nbsp;Male</span>
-					<span class=""><input class="gender_type" type="radio" value="female" name="gender_type"> &nbsp;<i class="fa fa-female"></i>&nbsp;Female</span>
-					</div>
-					<div class="text-danger pl-50" id="gender_error"></div>
-				</div>
-				<div class="form-group">
-					<div class="input-group col-md-12">
-						<div class="col-md-1"><span class="input-group-addon bl-1"><span class="glyphicon"><i class="fa fa-pencil"></i></span></span></div>
-						<div class="col-md-11"><textarea placeholder="ADDRESS" rows="5" id="address" class="width-100p"></textarea></div>
-					</div>
-					<div class="text-danger pl-50" id="address_error"></div>
-				</div>
-				<div class="form-group">
-					<input type="submit" id="signUp" style="background-color:#32A7B3 !important;" name="signUp" class="btn btn-lg bg_dark_purple btn-launch" value="Sign Up">
-				</div>
-				</form>
-			</div>
-										
 										</div>
-									</div>
-								</div>
-							</div>
-							<!--<div class="col-md-1 col-xs-12 text-center" style="top: -15px;">
-								<div class="or-middle">
-									<span class="horizontal">
-										<div  class="or-circle">or </div>
-									</span>
-								</div>
-							</div>
-								<div class="col-md-5 ">
-								<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="login" id="social_login_form">
-									
-									<div class="col-md-12 ">
-										<div class="">
-											<center><h2></h2><div class="text-danger pl-50 mt-50"></div></center>
-											
+										<div class="form-group">
+											<div class="input-group">
+												<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
+												<input type="password" class="form-control entity-form" name="password" id="password" placeholder="Password"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<button type="button" name="go" style="background-color:#32A7B3 !important;" class="btn btn-lg bg_dark_purple btn-launch" id="sign_in" value="Login"> Login </button>
+										</div>
+										<div class="form-group">
+											<a href="javascript:void(0);" id="show_forgot_password">Forgot Password ?</a> Click here to reset password
+										</div>
+									</form>
+									<div id="forget_password" class="hide">
+										<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="forgetPassword" id="forgetPassword_form">
+											<label class="success_txt hide" style="color:#169E0D;">Reset link has been sent to your email id</label>
+											<label class="not_exist hide" style="color:#FF0000;">This email id does not exist</label>
 											<div class="form-group">
-												<a type="submit" href="<?php if(isset($login_url)){ echo $login_url;} ?>" name="go" class=" social-btn facebook text-left" id="facebook_sign_in"><i class="fa fa-facebook icon-fb"></i> <span class="hidden-xs">Log in with</span> Facebook</a>
-												<a href="<?php if(isset($authUrl_google)){echo $authUrl_google;}else{echo 'javascript:void();';}?>" type="submit" name="go" class="social-btn google text-left" id="google_sign_in" ><i class="fa fa-google-plus icon-google"></i> <span class="hidden-xs">Log in with</span> Google</a> 
-												 <div id="my-signin2" class="social-btn google text-left" style="width:100%;"></div>
+												<div class="input-group">
+													<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-envelope"></i></div>
+													<input type="text" class="form-control entity-form" name="email" id="email" placeholder="Email"/>
+												</div>
+												<div class="text-danger pl-50" id="email_error"></div>
 											</div>
-											
-										</div>
+											<div class="form-group">
+												<input type="submit" name="email_send" style="background-color:#32A7B3 !important;" class="btn btn-lg bg_dark_purple btn-launch" id="send_email" value="Reset"><!-- Send Email</button>-->
+											</div>
+										</form>
 									</div>
-								</form>
-							</div>-->
-						</section>
-					</div>
+								</div>
+								<div class="tab-pane fade" id="register">
+									<form class="form-horizontal" method="post" action="#" onsubmit="return false;" role="SignUp" id="register_form">
+									<center><h2></h2><div class="text-danger pl-50" id="signup_error"></div></center>
+									<div class="form-group">
+										<input type="hidden" id="userID" value="">
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
+											<input type="text" class="form-control" id="reg-name" name="reg-name" placeholder="Name">
+										</div>
+										<div class="text-danger pl-50" id="reg-name_error"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-user"></i></div>
+											<input type="text" class="form-control" id="reg-username" name="reg-username" placeholder="UserName">
+										</div>
+										<div class="text-danger" id="reg-username_error"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-envelope"></i></div>
+											<input type="text" class="form-control" id="reg-email" name="reg-email" placeholder="Email-ID">
+										</div>
+										<div class="text-danger" id="reg-email_error"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
+											<input type="password" class="form-control entity-form" name="first_password" id="first_password" placeholder="Password">
+										</div>
+										<div class="text-danger pl-50" id="password_error1"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" style="border-radius:0;"><i class="fa fa-key"></i></div>
+											<input type="password" class="form-control entity-form" name="confirm_password" id="confirm_password" placeholder="Re-Enter Password">
+										</div>
+										<div class="text-danger pl-50" id="password_error2"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group date" id="datetimepicker1" name="datetimepicker1">
+											<span class="input-group-addon">
+											<span class="glyphicon fnt-sz-12"><i class="fa fa-calendar"></i></span>
+											</span>
+											<input type="text" id="startDate" class="form-control" name="startDate" va_req="true" value="" placeholder="Date Of Birth">
+										</div>
+										<div class="text-danger pl-50" id="startdate_error"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+										<label>Gender</label>
+										<span class=" pl-50 pr-50"><input class="gender_type" type="radio" value="male" name="gender_type"> &nbsp;<i class="fa fa-male"></i> &nbsp;Male</span>
+										<span class=""><input class="gender_type" type="radio" value="female" name="gender_type"> &nbsp;<i class="fa fa-female"></i>&nbsp;Female</span>
+										</div>
+										<div class="text-danger pl-50" id="gender_error"></div>
+									</div>
+									<div class="form-group">
+										<div class="input-group col-md-12">
+											<div class="col-md-1"><span class="input-group-addon bl-1"><span class="glyphicon"><i class="fa fa-pencil"></i></span></span></div>
+											<div class="col-md-11"><textarea placeholder="ADDRESS" rows="5" id="address" class="width-100p"></textarea></div>
+										</div>
+										<div class="text-danger pl-50" id="address_error"></div>
+									</div>
+									<div class="form-group">
+										<input type="submit" id="signUp" style="background-color:#32A7B3 !important;" name="signUp" class="btn btn-lg bg_dark_purple btn-launch" value="Sign Up">
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 <!-- End: Main -->
 
@@ -272,37 +237,35 @@
    $(document).ready(function(){
 		$('#header-bar').hide();
 		$("#datetimepicker1").datepicker({
-        format: 'yyyy-mm-dd'
-    });
-});
-		$('#sign_in').on('click',function(){
-			//$('.text-danger').html('');
-			var username= $('#username').val(), password = $('#password').val();
-			if(username == '')
-				$('#username_error').html('Invalid Username');
-			else if(password == '')
-				$('#login_error').html('Failed to authenticate');
-			else{
-				$.ajax({
-					url:'/WBSE/home/login_function',
-					data:{'username':username,'password':password},
-					type:'POST',
-					dataType:'json'
-				}).done(function(data){
-					if(data.status){
-						window.location='/WBSE/';
-					}
-					else{
-					$('.disable_div').remove();
-					$.gritter.add({
-					title: 'Failed',
-					text: 'Please try again later',
-					class_name: 'gritter-info gritter-center' + 'gritter-light'
-				});
-					}
-				});
-			}
+			format: 'yyyy-mm-dd'
 		});
+	});
+	$('#sign_in').on('click',function(){
+		$('.text-danger').remove();
+		var error = 0;
+		var error_text = '<div class="text-danger">This filed is required</div>';
+		if($('#username').val() == ""){
+			$('#username').parent().parent().append(error_text);
+			error++;
+		}
+		if($('#password').val() == ""){
+			$('#password').parent().parent().append(error_text);
+			error++;
+		}
+		if(error == 0){
+			$.ajax({
+				url:'<?php echo base_url('home/loginAuthentication');?>',
+				data:{'username':$('#username').val(),'password':$('#password').val()},
+				type:'POST',
+				dataType:'json'
+			}).done(function(data){
+				if(data)
+					window.location='<?php echo base_url();?>';
+				else
+					$('#login_form').parent().parent().prepend('<div class="text-danger">Invalid Username/Password</div>');
+			});
+		}
+	});
 
    $('#show_forgot_password').on('click',function(){
 		$('#forget_password').removeClass('hide');
@@ -370,7 +333,7 @@
 		if(error==0){
 			var formData = new FormData($('#Contest_form')[0]);
 			$.ajax({
-			url: "/WBSE/home/registration",
+			url: "<?php echo base_url();?>/home/registration",
 			type: "POST",
 			dataType:'json',
 			data : {"userID":userID,"name":name,"username":username,"email":email,"password":password1,"date":date,"gender":gender,"address":address},
@@ -394,7 +357,7 @@
 					class_name: 'gritter-info gritter-center' + 'gritter-light'
 				});
 					}
-			//window.location="/WBSE/home/registered/"+data.userID;
+			
 		});
 		}
 		
@@ -403,7 +366,4 @@
 
 
 </body>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 08:01:30 GMT -->
 </html>
