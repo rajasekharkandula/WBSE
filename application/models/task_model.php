@@ -4,51 +4,40 @@ class Task_model extends CI_Model
 
 	public function __construct()
 	{
-		$this->load->database();
+		$this->userID = $this->session->userdata('userID');
 	}
 
 	function createTask()
 	{
-		if($this->input->post('tid'))
+		if($this->input->post('taskID'))
 		{
-			$this->db->query("update task set taskName='".$this->input->post('tname')."',
-			categoryID='".$this->input->post('selectcat')."',
-			taskDesc='".$this->input->post('tdesc')."',
-			defBudget='".$this->input->post('tbudget')."',
+			$this->db->query("update tbl_tasks set taskName='".$this->input->post('taskName')."',
+			categoryID='".$this->input->post('categoryID')."',
+			taskDesc='".$this->input->post('taskDesc')."',
+			defBudget='".$this->input->post('defBudget')."',
 			wbse='".$this->input->post('wbse')."',
-			status='".$this->input->post('tstatus')."',
-			expiryDate='".$this->input->post('texpdate')."' 
-			where taskID='".$this->input->post('tid')."'");
+			status='".$this->input->post('taskStatus')."',
+			expiryDate='".$this->input->post('expiryDate')."' ,
+			modifiedDate = NOW(),
+			createdBy = '".$this->userID."'
+			where taskID='".$this->input->post('taskID')."'");
 			return true;
 		}
 		else
 		{
-			$this->db->query("INSERT INTO task(taskName,categoryID,taskDesc,defBudget,wbse,status,expiryDate)
-                       VALUES('".$this->input->post('tname')."','".$this->input->post('selectcat')."','".$this->input->post('tdesc')."','".$this->input->post('tbudget')."','".$this->input->post('wbse')."','".$this->input->post('tstatus')."','".$this->input->post('texpdate')."')");
+			$this->db->query("INSERT INTO tbl_tasks(taskID,taskName,categoryID,taskDesc,defBudget,wbse,status,expiryDate,createdDate,modifiedDate,createdBy)
+                       VALUES(UUID(),'".$this->input->post('taskName')."','".$this->input->post('categoryID')."','".$this->input->post('taskDesc')."','".$this->input->post('defBudget')."','".$this->input->post('wbse')."','".$this->input->post('taskStatus')."','".$this->input->post('expiryDate')."',NOW(),NOW(),'".$this->userID."')");
 			return true;
 		}
-		exit();
-
 	}
 	function getTasks()
 	{
-		$query=$this->db->query("Select t.taskID,t.taskName,t.wbse,t.taskDesc,t.defBudget,t.status,t.expiryDate,c.categoryName from task t inner join category c on c.categoryID=t.categoryID")->result_array();
-		return $query;
+		return $this->db->query("SELECT t.taskID,t.taskName,t.wbse,t.taskDesc,t.defBudget,t.status,t.expiryDate,c.categoryName,c.categoryID from tbl_tasks t inner join tbl_categories c on c.categoryID=t.categoryID")->result();
 	}
-	function getTasksByTaskId($id='')
+	function getTasksByTaskId($id)
 	{
-		$query=$this->db->query("Select * from task where taskID='".$id."'")->result_array();
-		return $query;
+		return $this->db->query("SELECT taskID,taskName, categoryID, wbse, taskDesc, defBudget, expiryDate, createdDate, modifiedDate, createdBy, status FROM tbl_tasks where taskID='".$id."'")->row();
 	}
-	function getCategories()
-	{
-		$query=$this->db->query("Select * from category")->result_array();
-		return $query;
-	}
-	function getTasksByCategoryId($id='')
-	{
-		$query=$this->db->query("Select * from task where categoryID='".$id."'")->result_array();
-		return $query;
-	}
+	
 }
 ?>

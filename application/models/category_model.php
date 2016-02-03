@@ -4,36 +4,34 @@ class Category_model extends CI_Model
 
 	public function __construct()
 	{
-		$this->load->database();
+		$this->userID = $this->session->userdata('userID');
 	}
 
 	function createCategory()
 	{
-		if($this->input->post('cid')){
-			$this->db->query("update category set categoryName='".$this->input->post('cname')."',
-			categoryDesc='".$this->input->post('cdesc')."',
-			createdDate='".$this->input->post('createddate')."',
-			modifiedDate=now();
-			status='".$this->input->post('selectstatus')."'
-			where categoryID='".$this->input->post('cid')."'");
-			return true;
+		if($this->input->post('categoryID')){
+			$this->db->query("update tbl_categories set categoryName='".$this->input->post('categoryName')."',
+			categoryDesc='".$this->input->post('categoryDesc')."',
+			modifiedDate=NOW(),
+			createdBy = '".$this->userID."',
+			status='".$this->input->post('categoryStatus')."'
+			where categoryID='".$this->input->post('categoryID')."'");
+			return TRUE;
 		}else{
 			
-			$this->db->query("INSERT INTO category(categoryName,categoryDesc,createdDate,modifiedDate,status)
-                       VALUES('".$this->input->post('cname')."','".$this->input->post('cdesc')."','".$this->input->post('createddate')."',now(),'".$this->input->post('selectstatus')."')");
-			return true;
+			$this->db->query("INSERT INTO tbl_categories(categoryID,categoryName,categoryDesc,createdDate,modifiedDate,createdBy,status)
+            VALUES(UUID(),'".$this->input->post('categoryName')."','".$this->input->post('categoryDesc')."',NOW(),NOW(),'".$this->userID."','".$this->input->post('categoryStatus')."')");
+			return TRUE;
 		}
-		exit();
+		return FALSE;
 	}
 	function getCategories()
 	{
-		$query=$this->db->query("Select * from category")->result_array();
-		return $query;
+		return $this->db->query("SELECT categoryID, categoryName, categoryDesc, createdDate, modifiedDate, createdBy, status FROM tbl_categories")->result();
 	}
-	function getCategoriesById($id='')
+	function getCategoriesById($id)
 	{
-		$query=$this->db->query("Select * from category where categoryID='".$id."'")->result_array();
-		return $query;
+		return $this->db->query("SELECT categoryID, categoryName, categoryDesc, createdDate, modifiedDate, createdBy, status FROM tbl_categories WHERE categoryID='$id'")->row();
 	}
 }
 ?>

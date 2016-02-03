@@ -1,9 +1,5 @@
-
 <!DOCTYPE html>
 <html>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 07:58:26 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -60,14 +56,24 @@
 	{
 		font-size:medium;
 	}
-	td
-	{
-		font-size:15px !important;
+	.vertical-text {
+		display: inline-block;
+		overflow: hidden;
+		width: 2.9em;
 	}
-	.bg-yellow
-	{
-		background-color:rgba(255,255,0,0.2) !important;
+	.vertical-text__inner {
+		display: inline-block;
+		line-height: 1.5;
+		transform: translate(0,100%) rotate(-90deg);
+		transform-origin: 0 0;
+		min-width: 100px;
 	}
+	.vertical-text__inner:after {
+		content: "";
+		display: block;
+		margin: -1.5em 0 100%;
+	}
+
 	</style>
 </head>
 
@@ -110,10 +116,7 @@
 					<a href="<?php echo base_url('home/budget_create');?>" class="btn btn-danger hidden-xs"><i class="fa fa-plus"></i> &nbsp;  New </a>
 				</div>	
 			</div>	
-						<?php foreach($categories as $c){ ?>
-						<br>
-						<div class="border-solid">
-							<table class = "table">
+						<table class = "table">
 								<tr>
 									<th>CATEGORY NAME</th>
 									<th>TASKS</th>
@@ -126,9 +129,17 @@
 									<th>June</th> 
 									<th>TOTAL PER TASK</th> 
 								</tr>
-								<?php foreach($tasks as $t){ if($c->categoryID == $t->categoryID){ ?>
+						</table>		
+						<?php foreach($categories as $c){ ?>
+						<br>
+						<div class="border-solid">
+							<table class = "table">
+								<?php $i=0;foreach($tasks as $t){ if($c->categoryID == $t->categoryID){ ?>
 								<tr>
-									<td width="200px"><?php echo $c->categoryName; ?></td>
+									<?php if($i==0){?>
+									 <td rowspan = "6" style="vertical-align: bottom;width:16px; background-color:red;border:0px;color:#fff;"><div class="vertical-text"><div class="vertical-text__inner"><?php echo $c->categoryName; ?> vhkjgj</div></div></td>
+									
+									<?php }$i++; ?>
 									<td width="400px"><?php echo $t->taskName; ?></td>
 									<td><?php echo $t->wbse; ?></td>
 									<td></td>

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 07:58:26 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <title>Alliance - A Responsive Bootstrap 3 Admin Dashboard Template</title>
+    <title>WBSE - Category</title>
     <meta name="keywords" content="HTML5, Bootstrap 3, Admin Template, UI Theme"/>
     <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
     <meta name="author" content="ThemeREX">
@@ -97,17 +94,17 @@
 					</thead>
 					<tbody>
 						<?php if(isset($categories)) : ?>
-						<?php foreach($categories as $v) :?>
+						<?php $i=1;foreach($categories as $v) :?>
 						<tr>
-							<td><?php echo $v['categoryID'];?></td>
-							<td><?php echo $v['categoryName'];?></td>
-							<td><?php echo $v['categoryDesc'];?></td>
-							<td><?php echo $v['createdDate'];?></td>
-							<td><?php echo $v['modifiedDate'];?></td>
-							<td><?php echo $v['status'];?></td>
-							<td><a href="<?php echo base_url();?>home/category_create/<?php echo $v['categoryID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
+							<td><?php echo $i;?></td>
+							<td><?php echo $v->categoryName;?></td>
+							<td><?php echo $v->categoryDesc;?></td>
+							<td><?php echo $v->createdDate;?></td>
+							<td><?php echo $v->modifiedDate;?></td>
+							<td><?php echo $v->status;?></td>
+							<td><a href="<?php echo base_url();?>home/category_create/<?php echo $v->categoryID;?>" class="edit"><i class="fa fa-edit"></i></a></td>
 						</tr>
-						<?php endforeach;?>
+						<?php $i++;endforeach;?>
 						<?php endif;?>
 					</tbody>
 				</table>
@@ -136,27 +133,7 @@
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 <script>
-$(document).ready(function(){	
-/* $(".edit").on("click",function(){
-	var id=$(this).data("value");
-	alert(id);
-	$.ajax({
-   url: '<?php echo base_url();?>home/editfun',
-   type: 'POST',
-   data: {'id':id},
-   dataType: 'json'
-  }).done(function(data){
-   if(data){
-		window.location="<?php echo $base_url();?>/home/category_create/data.categoryID";
-   }
-  });
-});
- */
-});
 
 </script>
 </body>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 08:01:30 GMT -->
 </html>

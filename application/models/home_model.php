@@ -9,11 +9,31 @@
 *
 *
 */
-    class home_model extends CI_Model{
-		public function __construct(){
-		 parent::__construct();
+class home_model extends CI_Model{
+	public function __construct(){
+		parent::__construct();
 		$this->load->database();
-        }
+    }
+	function getHeader($param){
+		$data = array();
+		return $data;
+	}
+	function login($userName,$password)
+	{
+		$qry=$this->db->query("CALL usp_loginFunction('$userName','$password')");
+		mysqli_next_result($this->db->conn_id);
+		if($qry->row()){
+			$row = $qry->row();
+			$this->session->set_userdata('userID',$row->userID);
+			$this->session->set_userdata('userName',$row->firstName.' '.$row->lastName);
+			$this->session->set_userdata('profilePic',$row->profilePic);
+			$this->session->set_userdata("login",TRUE);
+			return TRUE;
+		}
+		else
+			return FALSE;
+		
+	}
 	public function reg(){
 		$name=$this->input->post("name");
 		$username=$this->input->post("username");

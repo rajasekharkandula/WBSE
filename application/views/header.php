@@ -5,6 +5,7 @@
                 <a href="<?php echo base_url();?>" class="header-name">WBSE </a>
             </li>
         </ul>
+		<?php if($page != 'LOGIN'){ ?>
         <ul class="nav navbar-nav navbar-right" id="header-bar">
 			<li class="">
                 <div class="navbar-btn btn-group">
@@ -21,11 +22,18 @@
                 </div>
             </li>
             <li class="dropdown menu-merge">
+
                <?php if($signin){?>
 					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-						<span class="hidden-xs"><name><?php echo $details->userName;?></name> </span>
+						<span class="hidden-xs"><name><?php echo $this->session->userdata('userName');?></name> </span>
 						<span class="fa fa-caret-down hidden-xs mr15"></span>
+
 						<img src="<?php if(file_exists($details->profilePic)) echo base_url().'assets/'.$details->profilePic; else echo base_url().'assets/img/pages/clipart2.png';?>" alt="avatar" class="mw55">
+
+
+						<img src="<?php echo base_url($this->session->userdata('profilePic'));?>" alt="avatar" class="mw55">
+
+
 					</a>
 				<?php }?>
                 <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -56,6 +64,7 @@
                 </ul>
             </li>
         </ul>
+		<?php } ?>
     </header>
     <!-- End: Header -->
 	<!-- Start: Topbar-Dropdown -->
@@ -114,6 +123,7 @@
 					<span class="metro-title">Users</span>
 				</a>
 			</div>
+
 			<?php endif;?>
 			<?php if(in_array('Employee',$role)||in_array('HR',$role)):?>
 			<div class="col-xs-4 col-sm-2">
@@ -133,6 +143,7 @@
 			<?php endif;?>
 			<?php if($signin){?>
 			<?php if(in_array('Administrator',$role)):?>
+
 			<div class="col-xs-4 col-sm-2">
 				<a href="/WBSE/home/roles" class="metro-tile bg-roles bg-dark">
 					<span class="fa fa-user"></span>
