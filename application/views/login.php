@@ -84,6 +84,7 @@
 <div id="main">
 
 	<?php echo $header; ?>
+
 	<div class="container login-mt">
 		<div class="row">
 			<div class="col-md-12">
@@ -207,6 +208,7 @@
 								</div>
 							</div>
 						</div>
+
 					</section>
 				</div>
 			</div>
@@ -361,6 +363,14 @@
 		});
 		}
 		
+	});
+	$('#send_email').on('click',function(){
+		var error=0;
+		var mail=$('#email').val();
+		if(mail == ''){error++; $("#email_error").html("Please Enter Email");}
+		else 
+			$("#email_error").html("");
+			
 	});
         </script>
 

@@ -5,8 +5,7 @@
                 <a href="<?php echo base_url();?>" class="header-name">WBSE </a>
             </li>
         </ul>
-		<?php if($page != 'LOGIN'){ ?>
-        <ul class="nav navbar-nav navbar-right" id="header-bar">
+        <ul class="nav navbar-nav navbar-right">
 			<li class="">
                 <div class="navbar-btn btn-group">
                     <a href="#topbar-dropmenu1" class="topbar-menu-toggle btn" data-toggle="button">
@@ -22,16 +21,11 @@
                 </div>
             </li>
             <li class="dropdown menu-merge">
-
-               <?php if($signin){?>
-					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-						<span class="hidden-xs"><name><?php echo $this->session->userdata('userName');?></name> </span>
-						<span class="fa fa-caret-down hidden-xs mr15"></span>
-
-						<img src="<?php echo base_url($this->session->userdata('profilePic'));?>" alt="avatar" class="mw55">
-
-					</a>
-				<?php }?>
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>Doug Adams</name> </span>
+                    <span class="fa fa-caret-down hidden-xs mr15"></span>
+                    <img src="<?php echo base_url();?>/assets/img/avatars/profile_avatar.jpg" alt="avatar" class="mw55">
+                </a>
                 <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
                    <li class="list-group-item">
                         <a href="#" class="animated animated-short fadeInUp">
@@ -54,20 +48,19 @@
                             <span class="fa fa-cogs"></span> Settings </a>
                     </li>
                     <li class="dropdown-footer text-center">
-                        <a href="/WBSE/home/logout" class="btn btn-primary btn-sm btn-bordered">
+                        <a href="#" class="btn btn-primary btn-sm btn-bordered">
                             <span class="fa fa-power-off pr5"></span> Logout </a>
                     </li>
                 </ul>
             </li>
         </ul>
-		<?php } ?>
     </header>
     <!-- End: Header -->
 	<!-- Start: Topbar-Dropdown -->
 	<div class="topbar-dropmenu" id="topbar-dropmenu1">
 		<div class="topbar-menu row">
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/categories');?>" class="metro-tile bg-danger">
+				<a href="<?php echo base_url('home/category');?>" class="metro-tile bg-danger">
 					<span class="fa fa-music"></span>
 					<span class="metro-title">Categories</span>
 				</a>
@@ -79,27 +72,27 @@
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/budget');?>" class="metro-tile bg-primary">
+				<a href="#" class="metro-tile bg-primary">
 					<span class="fa fa-video-camera"></span>
 					<span class="metro-title">Budget Reports</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/expenditure');?>" class="metro-tile bg-alert">
+				<a href="#" class="metro-tile bg-alert">
 					<span class="fa fa-envelope"></span>
-					<span class="metro-title">Expenditure Reports</span>
+					<span class="metro-title">Messages</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/recovery');?>" class="metro-tile bg-system">
+				<a href="#" class="metro-tile bg-system">
 					<span class="fa fa-cog"></span>
-					<span class="metro-title">Recovery Reports</span>
+					<span class="metro-title">Settings</span>
 				</a>
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				<a href="<?php echo base_url('home/summaryreport');?>" class="metro-tile bg-dark">
+				<a href="#" class="metro-tile bg-dark">
 					<span class="fa fa-user"></span>
-					<span class="metro-title">Summary Reports</span>
+					<span class="metro-title">Users</span>
 				</a>
 			</div>
 		</div>
@@ -112,42 +105,12 @@
 					<span class="metro-title">Settings</span>
 				</a>
 			</div>
-			<?php if(in_array('Administrator',$role)):?>
 			<div class="col-xs-4 col-sm-2">
-				<a href="/WBSE/home/list_users" class="metro-tile bg-dark">
+				<a href="#" class="metro-tile bg-dark">
 					<span class="fa fa-user"></span>
 					<span class="metro-title">Users</span>
 				</a>
 			</div>
-
-			<?php endif;?>
-			<?php if(in_array('Employee',$role)||in_array('HR',$role)):?>
-			<div class="col-xs-4 col-sm-2">
-				<a href="/WBSE/home/calender" class="metro-tile bg-dark">
-					<span class="fa fa-user"></span>
-					<span class="metro-title">Calender</span>
-				</a>
-			</div>
-			<?php endif;?>
-			<?php if(in_array('Administrator',$role)):?>
-			<div class="col-xs-4 col-sm-2">
-				<a href="/WBSE/home/calenderAdmin" class="metro-tile bg-dark">
-					<span class="fa fa-user"></span>
-					<span class="metro-title">Attendance</span>
-				</a>
-			</div>
-			<?php endif;?>
-			<?php if($signin){?>
-			<?php if(in_array('Administrator',$role)):?>
-
-			<div class="col-xs-4 col-sm-2">
-				<a href="/WBSE/home/roles" class="metro-tile bg-roles bg-dark">
-					<span class="fa fa-user"></span>
-					<span class="metro-title">Roles</span>
-				</a>
-			</div>
-			<?php endif;?>
-			<?php }?>
 		</div>
 	</div>
 	<!-- End: Topbar-Dropdown -->

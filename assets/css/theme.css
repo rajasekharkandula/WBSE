@@ -8463,7 +8463,7 @@ figure {
   margin: 0;
 }
 img {
-  vertical-align: middle;
+  vertical-align: top !important;
 }
 .img-responsive,
 .thumbnail > img,
@@ -18107,7 +18107,7 @@ body.sidebar-collapsed #sidebar:before {
   line-height: 65px;
   padding-top: 0;
   padding-bottom: 0;
-  height: 65px;
+  height: 55px;
   max-height: 65px;
 }
 .navbar .nav > li > a.dropdown-toggle {
@@ -18116,11 +18116,11 @@ body.sidebar-collapsed #sidebar:before {
 }
 .navbar .nav > li > a.dropdown-toggle > .fa {
   font-size: 12px;
-  position: relative;
-  top: -2px;
+  
   text-align: center;
   width: 34px;
 }
+
 .navbar .nav > li > a.dropdown-toggle > .fa:before {
   content: '\f078';
 }

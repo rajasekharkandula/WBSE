@@ -18,9 +18,9 @@
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/select2.css">
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
@@ -40,50 +40,48 @@ button.circle_icon{
     padding: 0px 0px;
 }
 td .circle_icon{
- color:#fff;
+	color:#fff;
 }
-.th-center{text-align:center;}
-.mt-80{margin-top:80px;}
-.mt-75{margin-top:75px;}
-.add-rule{border: 1px solid black; background-color: #2A2F43; font-size: 18px; text-align: center; color: #fff; margin-left: -9px;}
+
 </style>
+    
 </head>
 <body>
 	<section>
-	  <div class="main">
-		<?php echo $header;?>
-	   </div>
-	  <div class="container">
-		<a href="/WBSE/home/edit_roles/">
-			<div class="col-md-3 mt-80">
-				<div class="add-rule">ADD ROLE</div>
+		<div class="main">
+				<?php echo $header;?>
 			</div>
-		</a>
-		<div class="col-md-3"><h2 class="mt-75">List of Roles</h2></div>
-	   <table class="text-center table" style="width:100%">
-			<thead>
-				 <tr>
-					  <th class="th-center">Roles</th>
-					  <th  class="th-center">Description</th>
-					  <th  class="th-center">Status</th>
-					  <th  class="th-center">Actions</th>
-				 </tr>
-			</thead>
-			<tbody>
-				<?php foreach($roles as $r):?>
-				 <tr>
-					  <td><?php echo $r->roleName;?></td>
-					  <td><?php echo $r->roleDescription;?></td>
-					  <td><?php  if($r->roleStatus=="P") echo 'Active';else echo 'In Active';?></td>
-					  <td>
-						<a class="btn" href="/WBSE/home/edit_roles/<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $r->uRoleID;?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button>
-					  </td>
-				 </tr>
+		<div class="container">
+			
+			<h2 style="margin-top:70px;">List of Users</h2>
+			<table class="text-center table" style="width:100%">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>UserName</th>
+						<th>Email ID</th>
+						<th>Address</th>
+						<!-- <th>status</th> -->
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($users as $user) : ?>
+					<?php if($user['Name']!='admin') : ?>
+					<tr>
+						<td><?php echo $user['Name'];?></td>
+						<td><?php echo $user['userName'];?></td>
+						<td><?php echo $user['emailID'];?></td>
+						<td><?php echo $user['address'];?></td>
+						<!-- <td><?php if($user['status']=='P')echo 'Active'; else echo 'In Active';?></td> -->
+						<td><a class="btn" href="edit_profile/<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button></td>
+					</tr>
+				<?php endif;?>
 				<?php endforeach;?>
-			</tbody>
-	   </table>
-	</div>
- </section>
+				</tbody>
+			</table>
+		</div>
+	</section>
 <script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
 <script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 
@@ -97,18 +95,18 @@ td .circle_icon{
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <script>
 $('.delete_btn').on('click',function(){
- var id=$(this).val();
- $.ajax({
- url: "/WBSE/home/deleteRoles",
- type: "POST",
- dataType:'json',
- data: {"roleID":id}
- }).done(function(data){
-  if(data)
-  {
-   window.location.reload();
-  }
- });
+	var id=$(this).val();
+	$.ajax({
+	url: "/WBSE/home/delete_profile",
+	type: "POST",
+	dataType:'json',
+	data: {"userID":id}
+	}).done(function(data){
+		if(data.status=='success')
+		{
+			window.location='/WBSE/home/list_users';
+		}
+	});
 });
 </script>
 </body>
