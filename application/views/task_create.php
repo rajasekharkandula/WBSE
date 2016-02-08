@@ -23,11 +23,11 @@
 
   
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/select2.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/WBSE/assets/css/bootstrap-datepicker.min.css">
+     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/select2.css">
 	
      <!-- Favicon -->
     <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">

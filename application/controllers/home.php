@@ -44,17 +44,25 @@ class Home extends CI_Controller {
 		$data['calendar']=$this->home_model->getHol();
 		$data['attendance']=$this->home_model->getAtt();
 		//var_dump($data['calendar']);exit();
+		if(!$this->session->userdata('login')){
+		redirect('home/login_form');
+		}
 		$this->load->view('calender',$data);
 	}
 	public function calenderAdmin(){
 		$this->load->library('session');
 		$data['signin'] = $this->session->userdata("userID");
 		//var_dump($this->session->userdata("userID"),$data['role']);exit();
-		$data['details']=$this->home_model->getUsers();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['users']=$this->home_model->getUsers();
+		$data['details']=$this->task->getUserDetails();
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['calendar']=$this->home_model->getHol();
 		$data['attendance']=$this->home_model->getAtt();
 		//var_dump($data['details'],$data['attendance']);exit();
+		if(!$this->session->userdata('login')){
+		redirect('home/login_form');
+		}
 		$this->load->view('attendance_sheet',$data);
 	}
 	public function logout()
@@ -80,6 +88,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['user']=$this->home_model->get_details($id);
 		$data['roles']=$this->home_model->getRoles();
@@ -102,6 +111,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategories();
 		$this->load->view('categories',$data);
@@ -110,6 +120,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategoriesById($id);
 		$this->load->view('category_create',$data);
@@ -122,6 +133,7 @@ class Home extends CI_Controller {
 	public function home_cat(){
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategories();
 		$this->load->view('categories',$data);
@@ -130,6 +142,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['tasks']=$this->task_model->getTasks();
 
@@ -139,6 +152,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategories();
 		$data['task']=$this->task_model->getTasksByTaskId($id);
@@ -155,6 +169,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->budget_model->getCategories();
 		$data['tasks']=$this->budget_model->getTasks();
@@ -174,6 +189,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->budget_model->getCategoriesAsArray();
 		$data['tasks']=$this->budget_model->getTasksAsArray();
@@ -184,6 +200,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$this->load->view('summaryreport',$data);
 	}
@@ -191,6 +208,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['expgroup']=$this->expenditure_model->getExpenditures();
 		$this->load->view('expenditure',$data);
@@ -206,6 +224,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategories();
 		$data['tasks']=$this->budget_model->getTasksAsArray();
@@ -218,6 +237,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['recoveries']=$this->recovery_model->getRecoveries();
 		$this->load->view('recovery',$data);
@@ -232,6 +252,7 @@ class Home extends CI_Controller {
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['recovery']=$this->recovery_model->getRecoveriesById($id);
 		$this->load->view('recovery_create',$data);

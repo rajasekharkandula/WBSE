@@ -34,7 +34,11 @@
 	
 </head>
 <body>
-	<table class="table">
+<section>
+	<div class="main">
+		<?php echo $header;?>
+	</div>
+	<table class="table" style="margin-top:80px;">
 	<tr>
 		<th class="">Name</th>
 		<th class="">1</th>
@@ -69,7 +73,7 @@
 		<th class="">30</th>
 		<th class="">31</th>
 	</tr>
-	<?php foreach($details as $d):?>
+	<?php foreach($users as $d):?>
 	<?php foreach($attendance as $a):?>
 	<tr>
 		<td class=""><?php echo $d['userName'];?></td>
@@ -106,6 +110,7 @@
 	<?php endforeach;?>
 	<?php endforeach;?>
 </table>
+</section>
 <script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
 <script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
 <!-- Theme Javascript -->

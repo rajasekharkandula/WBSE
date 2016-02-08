@@ -37,11 +37,9 @@
 <script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url();?>/assets/js/utility.js"></script>
 <script src="<?php echo base_url();?>/assets/js/main.js"></script>
-
 <script src='<?php echo base_url();?>assets/js/moment.min.js'></script>
 <script src='<?php echo base_url();?>assets/js/jquery.min.js'></script>
 <script src='<?php echo base_url();?>assets/js/fullcalendar.min.js'></script>
-
 <script>
 
 	$(document).ready(function() {
@@ -52,7 +50,7 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2016-01-12',
+			//defaultDate: '2016-01-12',
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
@@ -72,21 +70,29 @@
 			},
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
+			eventRender: function(event, element) {
+                if((event.title == "P")||(event.title == "p")) {
+                    element.css('background-color', 'green');
+                }
+				else if((event.title == "A")||(event.title == "a"))
+					element.css('background-color', 'red');
+            },
 			events: [
 				<?php foreach($calendar as $cal) :?>
 				{
 					title:"<?php echo $cal->Holiday_name;?>",
 					start:'<?php echo $cal->date;?>',
 					color: 'grey',
+					textColor: 'white',
 				}<?php if(sizeof($cal)!=0) echo',';?>
 				<?php endforeach;?>
 				<?php foreach($attendance as $cal) :?>
 				<?php if($signin==$cal->userID) :?>
 				{
-					title:"<?php echo $cal->attendance;?>",
+					title:"<?php echo $cal->time.' '.$cal->attendance;?>",
 					start:'<?php echo $cal->date;?>',
 					color: 'green',
-					text: 'white',
+					textColor: 'white',
 				}<?php if(sizeof($cal)!=0) echo',';?>
 				<?php endif;?>
 				<?php endforeach;?>

@@ -18,10 +18,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap-datepicker.min.css">
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
@@ -122,16 +122,15 @@
 
 <!-- BEGIN: PAGE SCRIPTS -->
 <!-- jQuery -->
-<script src="<?php echo base_url();?>/assets/js/jquery-2.1.4.js"></script>
-<script src="<?php echo base_url();?>/assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery-2.1.4.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
 <!-- Theme Javascript -->
-<script src="<?php echo base_url();?>/assets/js/utility.js"></script>
-<script src="<?php echo base_url();?>/assets/js/demo.js"></script>
-<script src="<?php echo base_url();?>/assets/js/main.js"></script>
+<script src="<?php echo base_url();?>assets/js/utility.js"></script>
+<script src="<?php echo base_url();?>assets/js/demo.js"></script>
+<script src="<?php echo base_url();?>assets/js/main.js"></script>
 <!-- Widget Javascript -->
-<script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
+<script src="<?php echo base_url();?>assets/js/dashboard1.js"></script>
 <!-- END: PAGE SCRIPTS -->
 <script>
 $(document).ready(function(){

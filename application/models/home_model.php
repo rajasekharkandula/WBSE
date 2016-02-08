@@ -85,7 +85,8 @@
 		return $query;
 	}
 	public function getAtt(){
-		$query=$this->db->query('select * from tbl_attendance')->result();
+		$query=$this->db->query("select date,DATE_FORMAT(date,'%H:%i') time,userID,attendance from tbl_attendance;")->result();
+		//$query=$this->db->query('select * from tbl_attendance')->result();
 		return $query;
 	}
 	public function insattndnce(){
