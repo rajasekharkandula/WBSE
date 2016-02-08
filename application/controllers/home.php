@@ -24,9 +24,11 @@ class Home extends CI_Controller {
 		if($this->session->userdata('login') == false)redirect('home/login',refresh);
 		$header['page'] = 'HOME';
 		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$header,true);
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		
 		$data['details']=$this->task->getUserDetails();
+		//var_dump($data['signin']);exit();
 		$this->load->view('index',$data);
 	}
 	public function calender(){
@@ -60,26 +62,32 @@ class Home extends CI_Controller {
 	}
 	public function list_users()
 	{
-		$data['signin'] = $this->session->userdata("userID");
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'HOME';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['header'] = $this->load->view('header',$header,true);
+		
 		$data['details']=$this->task->getUserDetails();
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
-		$data['header'] = $this->load->view('header',$data,true);
 		$data['users']=$this->home_model->getUsers();
-		//var_dump($data['details']);exit();
+		//var_dump($data['users']);exit();
 		$this->load->view('list_users',$data);
 	}
 	public function edit_profile($id='')
 	{
-		$data['signin'] = $this->session->userdata("userID");
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'HOME';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['header'] = $this->load->view('header',$header,true);
+		
 		$data['details']=$this->task->getUserDetails();
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
-		$data['header'] = $this->load->view('header',$data,true);
 		$data['user']=$this->home_model->get_details($id);
 		$data['roles']=$this->home_model->getRoles();
 		$data['ids']=$this->home_model->getAllIds();
 		$data['userRole']=$this->home_model->getUserRole($id);
 		$data['countries']=$this->home_model->getCountries();
-		//var_dump($data['ids']);exit();
+		//var_dump($data['roles'],$data['userRole']);exit();
 		$data['states']=$this->home_model->getStates();
 		$data['cities']=$this->home_model->getCities();
 		//var_dump($data['countries'],$data['states'],$data['cities'],$data['ids']);exit();
@@ -97,6 +105,8 @@ class Home extends CI_Controller {
 		echo json_encode($this->home_model->delete_profile($id));
 	}
 	public function edit_user_data(){
+		
+		
 		echo json_encode($this->home_model->edit_user_data());
 	}
 	public function insattndnce(){

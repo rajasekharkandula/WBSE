@@ -20,11 +20,14 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/theme.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/select2.css">	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/jasny-bootstrap.min.css" />
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
-
+<style>
+.user-img{position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;}
+</style>
     
 </head>
 <body>
@@ -37,15 +40,26 @@
 				<h2 style="margin-top:70px;">User Details</h2>
 				<form class="form-horizontal" name="edit_profile" id="edit_profile" role="form"  method="POST" id="basic_data" autocomplete="off" onsubmit="return false" >
 					<small class="pull-right">Fields marked with <span class="form-man">*</span> are mandatory</small><br/>
+				 
 					<div class="form-group">
 						<label for="name" class="col-md-3 control-label">
 							User Image <span class="form-man"> * </span>
 						</label>
-						<div class="col-md-6">
-							<input type="file" value="<?php if(isset($user[0]['userImage']))echo $user[0]['userImage']; ?>" class="form-control entity-form" name="userImage" id="userImage" placeholder="">
-							<div class="text-danger" id="userImage_error"></div>
+						<div class="col-md-8">
+							<div style="position:relative;">
+								<a class='btn btn-primary' href='javascript:;'>
+									Choose Image...
+									
+										
+									<input type="file" class="user-img" name="file_source" size="40"  onchange='readURL(this);'id="blah1" value="">
+								</a>
+									<br><br>
+									<img id="blah" src="<?php echo base_url();?><?php if(isset($user[0]['profilePic']))echo $user[0]['profilePic']; ?>" width="200"height="200"alt="your image" />
+									 <span class='label label-info' id="blah"></span>
+							</div>
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label for="name" class="col-md-3 control-label">
 							First Name <span class="form-man"> * </span>
@@ -109,7 +123,7 @@
 								<option> </option>
 								<?php 
 									foreach($countries as $cList){
-										if($cList->countryID == $ids->country)
+										if($cList->countryID == $user[0]['country'])
 											echo "<option value='".$cList->countryID."' selected>".$cList->countryName."</option>";
 										else
 											echo "<option value='".$cList->countryID."'>".$cList->countryName."</option>";
@@ -157,8 +171,8 @@
 						</label>
 						<div class="col-md-8">
 							<div id="">
-								<?php foreach($roles as $role) :?>
-									<input type="checkbox" class="role" data-value="<?php if(isset($role['uRoleID']))echo $role['uRoleID'];?>" <?php if(isset($userRole)) if(in_array($role['uRoleID'],$userRole)) echo 'checked';?> value="<?php if(isset($role['roleName']))echo $role['roleName'];?>">&nbsp;&nbsp;<?php if(isset($role['roleName']))echo $role['roleName'];?>&nbsp;&nbsp;
+								<?php $i=0;foreach($roles as $role) :?>
+									<input type="checkbox" class="role"name="role<?php echo $i++;?>" data-value="<?php if(isset($role['uRoleID']))echo $role['uRoleID'];?>" <?php if(isset($userRole)) if(in_array($role['uRoleID'],$userRole)) echo 'checked';?> value="<?php if(isset($role['uRoleID']))echo $role['uRoleID'];?>">&nbsp;&nbsp;<?php if(isset($role['roleName']))echo $role['roleName'];?>&nbsp;&nbsp;
 								<?php endforeach;?>
 							</div>
 							<div class="text-danger" id="role_error"></div>
@@ -169,7 +183,7 @@
 							Status <span class="form-man"> * </span>
 						</label>
 						<div class="col-md-5">
-							<select id="status" class="select2 form-control">
+							<select id="status"name="status" class="select2 form-control">
 								<option></option>
 								<option value="P" <?php if(isset($user[0]['userID'])) if($user[0]['status']=='P') echo 'selected';?>>Active</option>
 								<option value="S" <?php if(isset($user[0]['userID'])) if($user[0]['status']=='S') echo 'selected';?>>InActive</option>
@@ -201,6 +215,7 @@
 <script src="<?php echo base_url();?>/assets/js/main.js"></script>
 <script src="<?php echo base_url();?>/assets/js/select2.js"></script>
 <!-- Widget Javascript -->
+<script src="<?php echo base_url();?>/assets/js/jasny-bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>/assets/js/dashboard1.js"></script>
 <script>
  $(document).ready(function(){
@@ -210,9 +225,28 @@
 			allowClear: true
 		});
 	});
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+     var filename = $('#blah1').val();
+            //alert(filename);
+   $(this).html(filename);
+
+        }
+    }
 	$('#submit').on('click',function(){
 		var error=0;
 		var userID=$('#userID').val();
+		var image = $('#blah1').val();
 		var firstName=$('#firstName').val();
 		var username=$("#user").val();
 		var password=$("#Password").val();
@@ -257,8 +291,10 @@
 			$("#status_error").html("");
 		}
 		if(error==0){
-			//var formData = new FormData($('#edit_profile')[0]);
+			var formData = new FormData($('#edit_profile')[0]);
 			var userID=$('#userID').val();
+		//var image = formData;
+		//alert(image);
 		var firstName=$('#firstName').val();
 		var lastName=$('#lastName').val();
 		var username=$("#user").val();
@@ -279,7 +315,9 @@
 			url: "/WBSE/home/edit_user_data/",
 			type: "POST",
 			dataType:"json",
-			data: {"userID":userID,"firstName":firstName,"lastName":lastName,"username":username,"password":password,"email":email,"address":address,"country":country,"state":state,"city":city,"role":role,"status":status}
+			data: formData,
+			processData: false,
+			contentType: false
 			}).done(function(data){
 				if(data.status=='success')
 				{
@@ -295,45 +333,51 @@
 	});
 $('#country').on('change',function(){
 	$('#state').empty();
-	var stateID='<?php if(isset($state->stateID))echo $state->stateID;?>';
+	var stateID='<?php if(isset($ids->state))echo $ids->state;?>';
 	$.ajax({
 		url:"/WBSE/home/getStateDetails",
 		type:"POST",
 		dataType:"json",
 		data:{"countryID":this.value}
 	}).done(function(data){
-		$('#state').empty();
-		var i=0;
-		for(i;i<data.length;i++){
-			if(data[i]['stateID']==stateID)
-				$('#state').append("<option value="+data[i]['stateID']+"selected>"+data[i]['stateName']+"</option>");
-			else
-			$('#state').append("<option value="+data[i]['stateID']+">"+data[i]['stateName']+"</option>");	
-		}
-		$('#state').select2();
-				if(stateID != '')
-					$('#state').trigger('change');	
+		//$('#state').empty();
+		var i=0; var html='';
+			for(i;i<data.length;i++){
+				html+='<option value="'+data[i]['stateID']+'" ';
+				if(data[i]['stateID']==stateID)
+					html+=' selected ';
+				else
+					html+=' ';
+				html+='>'+data[i]['stateName']+'</option>';
+			}
+			$('#state').html(html);
+			$('.select2').select2();
+			if(stateID!='')
+				$('#state').trigger('change');		
 	});
 	
 });
 $('#state').on('change',function(){
 	$('#city').empty();
-	var cityID='<?php if(isset($city->cityID))echo $city->cityID;?>';
+	var cityID='<?php if(isset($ids->city))echo $ids->city;?>';
 	$.ajax({
 		url:"/WBSE/home/getCityDetails",
 		type:"POST",
 		dataType:"json",
 		data:{"stateID":this.value}
 	}).done(function(data){
-		$('#city').empty();
-		var i=0;
-		for(i;i<data.length;i++){
-			if(data[i]['cityID']==cityID)
-				$('#city').append("<option value="+data[i]['cityID']+"selected>"+data[i]['cityName']+"</option>");
-			else
-				$('#city').append("<option value="+data[i]['cityID']+">"+data[i]['cityName']+"</option>");
-		}
-		$('#city').select2();	
+		//$('#city').empty();
+		var i=0; var html='';
+			for(i;i<data.length;i++){
+				html+='<option value="'+data[i]['cityID']+'" ';
+				if(data[i]['cityID']==cityID)
+					html+=' selected ';
+				else
+					html+=' ';
+				html+='>'+data[i]['cityName']+'</option>';
+			}
+			$('#city').html(html);	
+			$('.select2').select2();
 	})
 });
 </script>

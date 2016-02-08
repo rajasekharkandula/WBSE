@@ -76,7 +76,7 @@ td .circle_icon{
 						<td><?php echo $user['firstName'];?><?php echo $user['lastName'];?></td>
 						<td><?php echo $user['userName'];?></td>
 						<td><?php echo $user['emailID'];?></td>
-						<td><?php echo $user['country'];?></td>
+						<td><?php echo $user['country'];?>,<?php echo $user['state'];?>,<?php echo $user['city'];?></td>
 						<!-- <td><?php if($user['status']=='P')echo 'Active'; else echo 'In Active';?></td> -->
 						<td><a class="btn" href="edit_profile/<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button></td>
 					</tr>

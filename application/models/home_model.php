@@ -129,21 +129,31 @@ class home_model extends CI_Model{
 		$userID=$this->input->post('userID');
 		$firstName=$this->input->post('firstName');
 		$lastName=$this->input->post('lastName');
-		$userName=$this->input->post('username');
-		$password=$this->input->post('password');
+		$userName=$this->input->post('user');
+		$password=$this->input->post('Password');
 		$emailID=$this->input->post('email');
 		$address=$this->input->post('address');
 		$country=$this->input->post('country');
 		$state=$this->input->post('state');
 		$city=$this->input->post('city');
 		$status=$this->input->post('status');
+		$path='assets/img/avatars/'.$_FILES['file_source']['name'];		
+		mkdir(base_url('assets/img/avatars'),0777);
+		$image= move_uploaded_file($_FILES['file_source']['tmp_name'],$path);
 		//var_dump($status);exit();
 		//$address=str_replace(' ', '&nbsp;',$this->input->post('address'));
-		$role1=$this->input->post('role');
-		$role=implode(",",$role1);
+		$roles=array();
+		for($i=0;$i<=20;$i++)
+		{
+			if($this->input->post('role'.$i))
+				array_push($roles,$this->input->post('role'.$i));
+		}
+		//$role1=;
+		$role=implode(",",$roles);
 			$length=sizeof($role);
+		//var_dump($role);exit();
 		//var_dump($userID,$userName,$emailID,$address,$role);exit();
-		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$firstName.'","'.$lastName.'","'.$userName.'","'.$password.'","'.$emailID.'","'.$address.'","'.$country.'","'.$state.'","'.$city.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
+		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$path.'","'.$firstName.'","'.$lastName.'","'.$userName.'","'.$password.'","'.$emailID.'","'.$address.'","'.$country.'","'.$state.'","'.$city.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
 		mysqli_next_result($this->db->conn_id);
 		$query1=$this->db->query("select @output")->result_array();
 		if($query1[0]['@output']=='Done Successfully')
@@ -156,6 +166,7 @@ class home_model extends CI_Model{
 	public function getAllIds()
 	{
 		$userID=$this->session->userData('userID');
+		//var_dump($userID);exit();
 		$query=$this->db->query("select country,city,state from tbl_users where userID='".$userID."';")->row();
 		return $query;
 	}

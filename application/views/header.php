@@ -23,13 +23,10 @@
             </li>
             <li class="dropdown menu-merge">
 
-               <?php if($signin){?>
+               <?php if($this->session->userdata('login')){?>
 					<a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
 						<span class="hidden-xs"><name><?php echo $this->session->userdata('userName');?></name> </span>
 						<span class="fa fa-caret-down hidden-xs mr15"></span>
-
-						<img src="<?php if(file_exists($details->profilePic)) echo base_url().'assets/'.$details->profilePic; else echo base_url().'assets/img/pages/clipart2.png';?>" alt="avatar" class="mw55">
-
 
 						<img src="<?php echo base_url($this->session->userdata('profilePic'));?>" alt="avatar" class="mw55">
 
@@ -141,7 +138,7 @@
 				</a>
 			</div>
 			<?php endif;?>
-			<?php if($signin){?>
+			<?php if($this->session->userdata('login')){?>
 			<?php if(in_array('Administrator',$role)):?>
 
 			<div class="col-xs-4 col-sm-2">
