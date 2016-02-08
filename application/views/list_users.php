@@ -52,8 +52,12 @@ td .circle_icon{
 				<?php echo $header;?>
 			</div>
 		<div class="container">
-			
-			<h2 style="margin-top:70px;">List of Users</h2>
+			<div class="col-md-3"><h2 style="margin-top:70px;">List of Users</h2></div>
+			<a href="/WBSE/home/edit_profile/">
+			<div class="col-md-3 mt-80 pull-right">
+				<div class="add-rule">ADD USERS</div>
+			</div>
+		</a>
 			<table class="text-center table" style="width:100%">
 				<thead>
 					<tr>
@@ -67,12 +71,12 @@ td .circle_icon{
 				</thead>
 				<tbody>
 					<?php foreach($users as $user) : ?>
-					<?php if($user['Name']!='admin') : ?>
+					<?php if($user['firstName']!='admin') : ?>
 					<tr>
-						<td><?php echo $user['Name'];?></td>
+						<td><?php echo $user['firstName'];?><?php echo $user['lastName'];?></td>
 						<td><?php echo $user['userName'];?></td>
 						<td><?php echo $user['emailID'];?></td>
-						<td><?php echo $user['address'];?></td>
+						<td><?php echo $user['country'];?>,<?php echo $user['state'];?>,<?php echo $user['city'];?></td>
 						<!-- <td><?php if($user['status']=='P')echo 'Active'; else echo 'In Active';?></td> -->
 						<td><a class="btn" href="edit_profile/<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="circle_icon fa fa-edit"></i></a>&nbsp;<button class="btn circle_icon delete_btn" value="<?php echo $user['userID'];?>" data-toggle="tooltip" data-placement="top" title="delete"><i class=" fa fa-remove"></i></button></td>
 					</tr>

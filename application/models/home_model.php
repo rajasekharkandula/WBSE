@@ -9,11 +9,31 @@
 *
 *
 */
-    class home_model extends CI_Model{
-		public function __construct(){
-		 parent::__construct();
+class home_model extends CI_Model{
+	public function __construct(){
+		parent::__construct();
 		$this->load->database();
-        }
+    }
+	function getHeader($param){
+		$data = array();
+		return $data;
+	}
+	function login($userName,$password)
+	{
+		$qry=$this->db->query("CALL usp_loginFunction('$userName','$password')");
+		mysqli_next_result($this->db->conn_id);
+		if($qry->row()){
+			$row = $qry->row();
+			$this->session->set_userdata('userID',$row->userID);
+			$this->session->set_userdata('userName',$row->firstName.' '.$row->lastName);
+			$this->session->set_userdata('profilePic',$row->profilePic);
+			$this->session->set_userdata("login",TRUE);
+			return TRUE;
+		}
+		else
+			return FALSE;
+		
+	}
 	public function reg(){
 		$name=$this->input->post("name");
 		$username=$this->input->post("username");
@@ -108,17 +128,33 @@
 	public function edit_user_data(){
 		$result['status']='failed';
 		$userID=$this->input->post('userID');
-		$name=$this->input->post('name');
-		$userName=$this->input->post('username');
+		$firstName=$this->input->post('firstName');
+		$lastName=$this->input->post('lastName');
+		$userName=$this->input->post('user');
+		$password=$this->input->post('Password');
 		$emailID=$this->input->post('email');
+		$address=$this->input->post('address');
+		$country=$this->input->post('country');
+		$state=$this->input->post('state');
+		$city=$this->input->post('city');
 		$status=$this->input->post('status');
+		$path='assets/img/avatars/'.$_FILES['file_source']['name'];		
+		mkdir(base_url('assets/img/avatars'),0777);
+		$image= move_uploaded_file($_FILES['file_source']['tmp_name'],$path);
 		//var_dump($status);exit();
-		$address=str_replace(' ', '&nbsp;',$this->input->post('address'));
-		$role1=$this->input->post('role');
-		$role=implode(",",$role1);
+		//$address=str_replace(' ', '&nbsp;',$this->input->post('address'));
+		$roles=array();
+		for($i=0;$i<=20;$i++)
+		{
+			if($this->input->post('role'.$i))
+				array_push($roles,$this->input->post('role'.$i));
+		}
+		//$role1=;
+		$role=implode(",",$roles);
 			$length=sizeof($role);
-		//var_dump($userID,$name,$userName,$emailID,$address,$role);exit();
-		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$name.'","'.$userName.'","'.$emailID.'","'.$address.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
+		//var_dump($role);exit();
+		//var_dump($userID,$userName,$emailID,$address,$role);exit();
+		$query=$this->db->query('call usp_edit_profile("'.$userID.'","'.$path.'","'.$firstName.'","'.$lastName.'","'.$userName.'","'.$password.'","'.$emailID.'","'.$address.'","'.$country.'","'.$state.'","'.$city.'","'.$role.'","'.$length.'","'.$status.'",@output)')->result();
 		mysqli_next_result($this->db->conn_id);
 		$query1=$this->db->query("select @output")->result_array();
 		if($query1[0]['@output']=='Done Successfully')
@@ -127,6 +163,48 @@
 			return $result;
 		}
 		return $result;
+	}
+	public function getAllIds()
+	{
+		$userID=$this->session->userData('userID');
+		//var_dump($userID);exit();
+		$query=$this->db->query("select country,city,state from tbl_users where userID='".$userID."';")->row();
+		return $query;
+	}
+	public function getCountryList()
+	{
+		$details=$this->input->post("CALL usp_getCountryStateCityDetails('C',null,null,null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getStateDetails()
+	{
+		$countryID=$this->input->post('countryID');
+		$details=$this->db->query("CALL usp_getCountryStateCityDetails('S','".$countryID."',null,null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getCityDetails()
+	{
+		$stateID=$this->input->post('stateID');
+		$details=$this->db->query("CALL usp_getCountryStateCityDetails('CI',null,'".$stateID."',null)");
+		mysqli_next_result($this->db->conn_id);
+		return $details->result_array();
+	}
+	public function getCountries()
+	{
+		$query=$this->db->query("select * from tbl_country")->result();
+		return $query;
+	}
+	public function getStates()
+	{
+		$query=$this->db->query("select * from tbl_state")->result();
+		return $query;
+	}
+	public function getCities()
+	{
+		$query=$this->db->query("select * from tbl_cities")->result();
+		return $query;
 	}
 }
       

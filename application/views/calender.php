@@ -50,7 +50,6 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			//defaultDate: '2016-01-12',
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {

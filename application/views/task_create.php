@@ -1,9 +1,5 @@
-
 <!DOCTYPE html>
 <html>
-
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 07:58:26 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -19,7 +15,7 @@
           type='text/css'>
 
     <!-- Icomoon CSS(font) -->
-    <link rel="stylesheet" type="text/css" href="/WBSE/assets/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/fonts/icomoon/icomoon.css">
 
   
     <!-- Theme CSS -->
@@ -28,9 +24,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/select2.css">
-	
      <!-- Favicon -->
-    <link rel="shortcut icon" href="/WBSE/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/img/favicon.ico">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -82,60 +78,60 @@
 				<form method="post" action="http://localhost:8081/WBSE/home/create_task">
 					<div class="form-group"> 
 						<div class="form-group">
-						<input type="hidden" class="form-control" id="tid" name="tid" value="<?php if(isset($values1[0]['taskID']))echo $values1[0]['taskID'];?>">
+						<input type="hidden" class="form-control" id="taskID" name="taskID" value="<?php if(isset($values1->taskID))echo $values1->taskID;?>">
 						</div>
-						<label for="selectcat">Select Catergory</label>
+						<label for="categoryID">Select Catergory</label>
 						
-						<select name="selectcat" id="selectcat" class="width-100" required>
+						<select name="categoryID" id="categoryID" class="width-100" required>
 						<option disabled selected>SELECT</option>
 						<?php if(isset($categories)) : ?>
 						<?php foreach($categories as $v) :?>
-							<option value="<?php echo $v['categoryID']?>" <?php if(isset($task[0]['categoryID']))if($task[0]['categoryID']==$v['categoryID']) echo 'selected';?>><?php echo $v['categoryName'];?></option>
+							<option value="<?php echo $v->categoryID;?>" <?php if(isset($task->categoryID))if($task->categoryID==$v->categoryID) echo 'selected';?>><?php echo $v->categoryName;?></option>
 						<?php endforeach;?>
 						<?php endif;?>
 						</select>
 
 					</div>
 					<div class="form-group">
-						<label for="tname">Task Name:</label>
-						<input type="text" class="form-control" id="tname" placeholder="Task Name" name="tname" required value="<?php if(isset($task[0]['taskName']))echo $task[0]['taskName'];?>">
+						<label for="taskName">Task Name:</label>
+						<input type="text" class="form-control" id="taskName" placeholder="Task Name" name="taskName" required value="<?php if(isset($task->taskName))echo $task->taskName;?>">
 					</div>
 					<div class="form-group">
 						<label for="wbse">WBSE</label>
-						<input type="text" class="form-control" id="wbse" placeholder="WBSE Number" name="wbse" value="<?php if(isset($task[0]['wbse']))echo $task[0]['wbse'];?>">
+						<input type="text" class="form-control" id="wbse" placeholder="WBSE Number" name="wbse" value="<?php if(isset($task->wbse))echo $task->wbse;?>">
 					</div>
 					<div class="form-group">
-					  <label for="tdesc">Description:</label>
-					  <textarea class="form-control" rows="5" id="tdesc" placeholder="Task Description" name="tdesc" required value=""><?php if(isset($task[0]['taskDesc']))echo $task[0]['taskDesc'];?></textarea>
+					  <label for="taskDesc">Description:</label>
+					  <textarea class="form-control" rows="5" id="taskDesc" placeholder="Task Description" name="taskDesc" required value=""><?php if(isset($task->taskDesc))echo $task->taskDesc;?></textarea>
 					</div>
 					<div class="form-group">
-						<label for="tbudget">Default Budget:</label>
-						<input type="text" class="form-control" id="tbudget" placeholder="Task Budget" name="tbudget" required value="<?php if(isset($task[0]['defBudget']))echo $task[0]['defBudget'];?>">
+						<label for="defBudget">Default Budget:</label>
+						<input type="text" class="form-control" id="defBudget" placeholder="Task Budget" name="defBudget" required value="<?php if(isset($task->defBudget))echo $task->defBudget;?>">
 					</div>
 					<div class="form-group">
-						<label for="texpdate">Expiry Date:</label>
+						<label for="expiryDate">Expiry Date:</label>
 						<div class="input-group date datepicker"  id="datetimepicker1" >
-							<input type="text" class="form-control"  name="texpdate" value="<?php if(isset($task[0]['expiryDate']))echo $task[0]['expiryDate'];?>">
+							<input type="text" class="form-control"  name="expiryDate" value="<?php if(isset($task->expiryDate))echo $task->expiryDate;?>">
 							<span class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="tstatus">Status:</label>
-						<select name="tstatus" id="tstatus" class="width-100" required>
+						<label for="taskStatus">Status:</label>
+						<select name="taskStatus" id="taskStatus" class="width-100" required>
 							<option disabled>SELECT</option>
-							<option value="Active" <?php if(isset($task[0]['status']))if($task[0]['status']=='Active') echo 'selected';?>>Active</option>
-							<option value="InActive" <?php if(isset($task[0]['status']))if($task[0]['status']=='InActive') echo 'selected';?>>In Active </option>
+							<option value="Active" <?php if(isset($task->taskStatus))if($task->taskStatus=='Active') echo 'selected';?>>Active</option>
+							<option value="Inactive" <?php if(isset($task->taskStatus))if($task->taskStatus=='Inactive') echo 'selected';?>>In Active </option>
 						</select>
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="reset" class="btn btn-default">Cancel</button>
+						<a href="<?php echo base_url('home/tasks');?>" type="reset" class="btn btn-default">Cancel</a>
 					</div>
 				</form>
 			</div>
-			<div class="col-md-7 bg-white">
+			<div class="col-md-7 bg-white hide">
 				<h2 class="c-heading">List Of Tasks</h2>
 				<br>
 				<table class="table">
@@ -154,19 +150,19 @@
 					</thead>
 					<tbody>
 						<?php if(isset($tasks)) : ?>
-						<?php foreach($tasks as $v) :?>
+						<?php $i=0;foreach($tasks as $v) :?>
 						<tr>
-							<td class="hide"><?php echo $v['taskID'];?></td>
-							<td><?php echo $v['taskName'];?></td>
-							<td><?php echo $v['categoryName'];?></td>
-							<td><?php echo $v['wbse'];?></td>
-							<td><?php echo $v['taskDesc'];?></td>
-							<td><?php echo $v['defBudget'];?></td>
-							<td><?php echo $v['expiryDate'];?></td>
-							<td><?php echo $v['status'];?></td>
-							<td><a href="<?php echo base_url();?>home/task_create/<?php echo $v['taskID'];?>" class="edit"><i class="fa fa-edit"></i></a></td>
+							<td class="hide"><?php echo $i;?></td>
+							<td><?php echo $v->taskName;?></td>
+							<td><?php echo $v->categoryName;?></td>
+							<td><?php echo $v->wbse;?></td>
+							<td><?php echo $v->taskDesc;?></td>
+							<td><?php echo $v->defBudget;?></td>
+							<td><?php echo $v->expiryDate;?></td>
+							<td><?php echo $v->status;?></td>
+							<td><a href="<?php echo base_url();?>home/task_create/<?php echo $v->taskID;?>" class="edit"><i class="fa fa-edit"></i></a></td>
 						</tr>
-						<?php endforeach;?>
+						<?php $i++;endforeach;?>
 						<?php endif;?>
 					</tbody>
 				</table>
@@ -198,6 +194,4 @@ $(document).ready(function(){
 </script>
 </body>
 
-
-<!-- Mirrored from alliance-html.themerex.net/ by HTTrack Website Copier/3.x [XR&CO'2010], Fri, 18 Dec 2015 08:01:30 GMT -->
 </html>

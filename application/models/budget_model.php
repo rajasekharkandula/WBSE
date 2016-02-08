@@ -4,60 +4,40 @@ class Budget_model extends CI_Model
 
 	public function __construct()
 	{
-		$this->load->database();
+		$this->userID = $this->session->userdata('userID');
 	}
 
 	function createBudget()
 	{
-		if($this->input->post('bid'))
+		echo $budgetDate = date('Y-m-d',strtotime($this->input->post('year').'-'.$this->input->post('month').'-01'));
+		exit();
+		if($this->input->post('budgetID'))
 		{
-			$this->db->query("update budget set taskID='".$this->input->post('selecttask')."',
-			budgetDate='".$this->input->post('selectmonth')."',
+			$this->db->query("update tbl_budget set taskID='".$this->input->post('taskID')."',
+			budgetDate='".$budgetDate."',
 			budget='".$this->input->post('budget')."',
-			status='".$this->input->post('status')."'
-			where budgetID='".$this->input->post('bid')."'");
-			return true;
+			status='".$this->input->post('status')."',
+			modifiedDate = NOW(),
+			createdBy = '".$this->userID."'
+			where budgetID='".$this->input->post('budgetID')."'");
+			return TRUE;
 		}
 		else
 		{
-			if($this->db->query("INSERT INTO budget(taskID,budgetDate,budget,status)
-                       VALUES('".$this->input->post('selecttask')."','".$this->input->post('selectmonth')."','".$this->input->post('budget')."','".$this->input->post('status')."')"));
-			return true;
+			$this->db->query("INSERT INTO tbl_budget(budgetID,taskID,budgetDate,budget,status,createdDate,modifiedDate,createdBy)
+            VALUES(UUID(),'".$this->input->post('taskID')."','".$budgetDate."','".$this->input->post('budget')."','".$this->input->post('status')."',NOW(),NOW(),'".$this->userID."')");
+			return TRUE;
 		}
-		exit();
-
+		return FALSE;
 	}
 	function getBudgetsById($id='')
 	{
-		$query=$this->db->query("Select b.budgetID,b.budget,b.budgetDate,t.taskName,t.wbse,c.categoryName,c.categoryID,t.taskID from budget b inner join task t on t.taskID=b.taskID inner join category c on c.categoryID=t.categoryID where budgetID='".$id."'")->result_array();
-		//var_dump($query);exit();
-		return $query;
+		return $this->db->query("SELECT b.budgetID,b.budget,b.budgetDate,t.taskName,t.wbse,c.categoryName,c.categoryID,t.taskID from tbl_budget b inner join tbl_tasks t on t.taskID=b.taskID inner join tbl_categories c on c.categoryID=t.categoryID where budgetID='".$id."'")->row();
 	}
-	function getCategories()
-	{
-		return $this->db->query("Select * from category")->result();
-		
-	}
-	function getTasks()
-	{
-		return $this->db->query("Select * from task")->result();
-	}
+	
 	function getBudgets()
 	{
-		return $this->db->query("Select * from budget")->result();
-	}
-	function getTasksAsArray()
-	{
-		return $this->db->query("Select * from task")->result_array();
-	}
-	function getCategoriesAsArray()
-	{
-		return $this->db->query("Select * from category")->result_array();
-		
-	}
-	function getBudgetAsArray()
-	{
-		return $this->db->query("Select * from budget")->result_array();
+		return $this->db->query("SELECT budgetID,taskID, budget, budgetDate, createdDate, modifiedDate, createdBy, status FROM tbl_budget;")->result(); 
 	}
 }
 ?>

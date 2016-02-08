@@ -6,10 +6,8 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 
-		//$this->load->model('category');
+		$this->load->helper('url');
 		$this->load->model('task');
-		//$this->load->model('recovery');
-		//$this->load->model('expenditure');
 		$this->load->model('home_model');
 		$this->load->library('session');
 		$this->load->model('category_model');
@@ -22,16 +20,15 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->library('session');
-		$data['signin'] = $this->session->userdata("userID");
 
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'HOME';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['header'] = $this->load->view('header',$header,true);
+		
 		$data['details']=$this->task->getUserDetails();
-		//var_dump($data['details']);exit();
-		$data['header'] = $this->load->view('header',$data,true);
-		if(!$this->session->userdata('login')){
-		redirect('home/login_form');
-		}
+		//var_dump($data['signin']);exit();
 		$this->load->view('index',$data);
 	}
 	public function calender(){
@@ -53,9 +50,9 @@ class Home extends CI_Controller {
 		$this->load->library('session');
 		$data['signin'] = $this->session->userdata("userID");
 		//var_dump($this->session->userdata("userID"),$data['role']);exit();
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
-		$data['users']=$this->home_model->getUsers();
 		$data['details']=$this->task->getUserDetails();
+		$data['details']=$this->home_model->getUsers();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['calendar']=$this->home_model->getHol();
 		$data['attendance']=$this->home_model->getAtt();
@@ -67,34 +64,47 @@ class Home extends CI_Controller {
 	}
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->sess_destroy();
-		//$this->facebook->destroySession();
-		//session_destroy();
-		//echo 'ok'; exit();
-		redirect('home/login_form');
+		redirect('home/login');
 	}
 	public function list_users()
 	{
-		$data['signin'] = $this->session->userdata("userID");
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'HOME';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['header'] = $this->load->view('header',$header,true);
+		
 		$data['details']=$this->task->getUserDetails();
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
-		$data['header'] = $this->load->view('header',$data,true);
 		$data['users']=$this->home_model->getUsers();
-		//var_dump($data['details']);exit();
+		//var_dump($data['users']);exit();
 		$this->load->view('list_users',$data);
 	}
 	public function edit_profile($id='')
 	{
-		$data['signin'] = $this->session->userdata("userID");
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'HOME';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$header['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
+		$data['header'] = $this->load->view('header',$header,true);
+		
 		$data['details']=$this->task->getUserDetails();
-		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
-		$data['header'] = $this->load->view('header',$data,true);
 		$data['user']=$this->home_model->get_details($id);
 		$data['roles']=$this->home_model->getRoles();
+		$data['ids']=$this->home_model->getAllIds();
 		$data['userRole']=$this->home_model->getUserRole($id);
-		//var_dump($data['user'],$data['userRole'],$data['roles']);exit();
+		$data['countries']=$this->home_model->getCountries();
+		//var_dump($data['roles'],$data['userRole']);exit();
+		$data['states']=$this->home_model->getStates();
+		$data['cities']=$this->home_model->getCities();
+		//var_dump($data['countries'],$data['states'],$data['cities'],$data['ids']);exit();
 		$this->load->view('edit_profile',$data);
+	}
+	public function getStateDetails(){
+		echo json_encode($this->home_model->getStateDetails());
+	}
+	public function getCityDetails(){
+		echo json_encode($this->home_model->getCityDetails());
 	}
 	public function delete_profile()
 	{
@@ -102,6 +112,8 @@ class Home extends CI_Controller {
 		echo json_encode($this->home_model->delete_profile($id));
 	}
 	public function edit_user_data(){
+		
+		
 		echo json_encode($this->home_model->edit_user_data());
 	}
 	public function insattndnce(){
@@ -109,6 +121,10 @@ class Home extends CI_Controller {
 	}
 	public function categories()
 	{
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'CATEGORIES';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
 		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
@@ -116,14 +132,22 @@ class Home extends CI_Controller {
 		$data['categories']=$this->category_model->getCategories();
 		$this->load->view('categories',$data);
 	}
-	public function category_create($id='')
+	public function category_create($id)
 	{
+
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'CATEGORIES';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
 		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['categories']=$this->category_model->getCategoriesById($id);
-		$this->load->view('category_create',$data);
+		if($data['categories'])
+			$this->load->view('category_create',$data);
+		else
+			$this->load->view('errors/401');
 	}
 	function create_category()
 	{
@@ -140,16 +164,29 @@ class Home extends CI_Controller {
 	}
 	public function tasks()
 	{
+	if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'TASKS';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
+
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
 		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['tasks']=$this->task_model->getTasks();
 
+	
+		$data['tasks']=$this->task_model->getTasks();
 		$this->load->view('tasks',$data);
 	}
-	public function task_create($id='')
+	public function task_create($id="")
 	{
+
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'TASKS';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
+
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
 		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
@@ -157,8 +194,10 @@ class Home extends CI_Controller {
 		$data['categories']=$this->category_model->getCategories();
 		$data['task']=$this->task_model->getTasksByTaskId($id);
 		$data['tasks']=$this->task_model->getTasks();
-		//var_dump($data['values1']);exit();
-		$this->load->view('task_create',$data);
+		if($data['task'])
+			$this->load->view('task_create',$data);
+		else
+			$this->load->view('errors/401');
 	}
 	public function create_task()
 	{
@@ -167,6 +206,11 @@ class Home extends CI_Controller {
 	}
 	public function budget($id='')
 	{
+
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'BUDGET';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
 		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
@@ -175,17 +219,28 @@ class Home extends CI_Controller {
 		$data['tasks']=$this->budget_model->getTasks();
 		$data['budgets']=$this->budget_model->getBudgets();
 		$data['budget']=$this->budget_model->getBudgetsById($id);
-		$data['budgetarray']=$this->budget_model->getBudgetAsArray();
-		//var_dump($data['budget']);exit();
+		$data['budgetarray']=$this->budget_model->getBudgets();
 		$this->load->view('budget',$data);
 
+	}
+	public function budget_create($id='')
+	{
+		if($this->session->userdata('login') == false)redirect('home/login',refresh);
+		$header['page'] = 'BUDGET';
+		$header['data'] = $this->home_model->getHeader($param="");
+		$data['header'] = $this->load->view('header',$header,true);
+		$data['categories']=$this->category_model->getCategories();
+		$data['tasks']=$this->task_model->getTasks();
+		$data['budget']=$this->budget_model->getBudgetsById($id);
+		$this->load->view('budget_create',$data);
 	}
 	public function create_budget()
 	{
 		$this->budget_model->createBudget();
 		redirect('home/budget');
 	}
-	public function budget_create($id='')
+
+	/* public function budget_create($id='')
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
@@ -195,7 +250,8 @@ class Home extends CI_Controller {
 		$data['tasks']=$this->budget_model->getTasksAsArray();
 		$data['budget']=$this->budget_model->getBudgetsById($id);
 		$this->load->view('budget_create',$data);
-	}	
+	}	 */
+
 	public function summaryreport()
 	{
 		$data['signin'] = $this->session->userdata("userID");
@@ -217,7 +273,6 @@ class Home extends CI_Controller {
 	public function create_expenditure()
 	{
 		$groupID=$this->expenditure_model->createExpenditureList();
-		//var_dump($data['groupID']);exit();
 		redirect('home/expenditure_create/'.$groupID);
 	}
 	public function expenditure_create($groupID='',$id='')
@@ -241,7 +296,19 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('header',$data,true);
 		$data['recoveries']=$this->recovery_model->getRecoveries();
 		$this->load->view('recovery',$data);
+		
 
+	}
+	public function edit_roles($uRoleID='')
+	{
+		$data['signin'] = $this->session->userdata("userID");
+		$data['details']=$this->task->getUserDetails();
+		$data['roles']=$this->task->getRole($uRoleID);
+		$data['header'] = $this->load->view('header',$data,true);
+		$this->load->view('edit_roles',$data);
+		$data['roles']=$this->task->getRoles();
+		$data['header'] = $this->load->view('header',$data,true);
+		$this->load->view('roles',$data);
 	}
 	public function create_recovery()
 	{
@@ -269,17 +336,16 @@ class Home extends CI_Controller {
 	{
 		echo json_encode($this->task->deleteRoles());
 	}
-	public function login_form()
+	public function login()
 	{
-		$data['signin'] = $this->session->userdata("userID");
-		$data['header'] = $this->load->view('header',$data,true);
-		$this->load->library('session');
-		//exit();
-		if($this->session->userdata('login')){
-				redirect('home',refresh);
-			}
-		else
+		if($this->session->userdata('login'))redirect('home',refresh);
+		$header['page'] = 'LOGIN';
+		$data['header'] = $this->load->view('header',$header,true);
 		$this->load->view('login',$data);
+	}
+
+	public function loginAuthentication(){
+		echo json_encode($this->home_model->login($this->input->post('username'),$this->input->post('password')));
 	}
 	public function roles()
 	{
@@ -291,32 +357,24 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('header',$data,true);
 		$this->load->view('roles',$data);
 	}
-	public function edit_roles($uRoleID='')
+	/* public function edit_roles($uRoleID='')
 	{
 		$data['signin'] = $this->session->userdata("userID");
 		$data['details']=$this->task->getUserDetails();
+		$data['role'] = $this->home_model->getUserRoleName($this->session->userdata("userID"));
 		$data['roles']=$this->task->getRole($uRoleID);
 		//var_dump($data['roles']);exit();
 		$data['header'] = $this->load->view('header',$data,true);
 		$this->load->view('edit_roles',$data);
-	}
+
+	} */
 	public function getUserDetails(){
 		$data['details']=$this->task->login_form();
-		//var_dump($data['details']);exit();
 		$this->load->view('wbse',$data);
-	}
-	public function login_function(){
-		
-		$retval = $this->task->login_form($this->input->post('username'),$this->input->post('password'));
-		$ret_array['status'] = $retval;
-		
-		//var_dump($retval);exit;
-		echo json_encode($ret_array);
 	}
 	public function registered($id='')
 	{
 		$data['details']=$this->home_model->get_details($id);
-		//var_dump($data['details']);exit();
 		$this->load->view("homepage",$data);
 	}
 	public function registration()
